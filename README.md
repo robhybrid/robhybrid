@@ -1,132 +1,160 @@
 # ROBERT WILLIAMS
 
-[512-565-3884](tel:512-565-3884) | rob@robhybrid.com | Austin, TX 78723
+📞 512-565-3884  
+✉️ rob@robhybrid.com  
+📍 Austin, TX 78723  
 
-## Summary
+---
+
+## **Summary**
 
 Experienced software engineer and cloud architect with a strong record of modernizing legacy systems, scaling infrastructure, and delivering resilient, user-centric solutions. Brings a multidisciplinary approach to development—spanning full-stack engineering, DevOps, and UX research—focused on building secure, scalable, and maintainable platforms.
 
-## Work Experience
+---
 
-<style>
-  .employer {  }
-  .duration, .location { font-size: 0.75em; float: right; clear: right; }
-  .role { display: block; font-weight: 300;  }
-</style>
-<!-- template
- ### <span class="employer">EMPLOYER</span> <span class="location">LOCATION/span> <span class="duration">WHEN</span> <span class="role">ROLE</span>
- -->
+## **Work Experience**
 
-### <span class="employer">TotalEnergies</span> <span class="location">San Francisco, CA (remote)</span> <span class="duration">April 2024–June 2025</span> <span class="role">Full-Stack Developer</span>
+### **TotalEnergies** – *San Francisco, CA (Remote)*  
+**Full-Stack Developer**  
+*April 2024 – June 2025*
 
-- Developed a React-based application for modeling grid-scale energy storage using AWS Lambda and Python/FastAPI.
-- Refactored backend services from Flask to FastAPI to improve performance, testability, and deployment efficiency.
-- Built CI/CD pipelines in GitHub Actions with automated unit, integration, and visual regression tests using Vitest and Puppeteer.
-- Managed gradual migration from legacy apps with opt-in toggles and rollback-safe deployments.
-- Led stakeholder interviews and delivered branded UX/UI improvements informed by user testing.
+- Developed a React-based application for modeling grid-scale energy storage using AWS Lambda and Python/FastAPI.  
+- Refactored backend services from Flask to FastAPI to improve performance, testability, and deployment efficiency.  
+- Built CI/CD pipelines in GitHub Actions with automated unit, integration, and visual regression tests using Vitest and Puppeteer.  
+- Managed gradual migration from legacy apps with opt-in toggles and rollback-safe deployments.  
+- Led stakeholder interviews and delivered branded UX/UI improvements informed by user testing.  
 - Closed all known security vulnerabilities across the application stack.
 
-### <span class="employer">Airstrip Technologies</span> <span class="location">San Antonio, TX</span> <span class="duration">June 2017–Jan 2024</span> <span class="role">Lead Web App Developer</span>
+### **Airstrip Technologies** – *San Antonio, TX*  
+**Lead Web App Developer**  
+*June 2017 – Jan 2024*
 
-- Oversaw architecture of HIPAA-compliant telehealth platforms with live remote monitoring.
-- Developed a scalable WebGL dashboard for real-time patient telemetry viewed by hospital staff.
-- Led infrastructure and build pipeline automation using containerized microservices and secure CI/CD.
+- Oversaw architecture of HIPAA-compliant telehealth platforms with live remote monitoring.  
+- Developed a scalable WebGL dashboard for real-time patient telemetry viewed by hospital staff.  
+- Led infrastructure and build pipeline automation using containerized microservices and secure CI/CD.  
 - Directed cross-functional collaboration between product, engineering, QA, and design.
 
-### <span class="employer">Amazon</span> <span class="location">Austin, TX</span> <span class="duration">June 2016–May 2017</span> <span class="role">Software Development Engineer</span>
+### **Amazon** – *Austin, TX*  
+**Software Development Engineer (Mobile Device Management)**  
+*June 2016 – May 2017*
 
-- Worked on the Mobile Device Management (MDM) team, improving internal tools for global device software deployment.
-- Built data visualization tools in D3/React for tracking provisioning, performance, and errors.
+- Built internal tools for managing global mobile device software deployment.  
+- Created data dashboards using D3 and React for tracking provisioning performance.  
 - Designed secure REST APIs and collaborated on Java backend integration.
 
-### <span class="employer">Mutual Mobile</span> <span class="location">Austin, TX</span> <span class="duration">Oct 2012–May 2016</span> <span class="role">Senior Web Developer</span>
+### **Mutual Mobile** – *Austin, TX*  
+**Senior Web Developer**  
+*Oct 2012 – May 2016*
 
-- Led LeanUX process on financial literacy platforms for iOS and Android.
-- Built browser-based simulator for Google Glass before developer hardware was available.
-- Integrated user testing and analytics-driven feature iteration in mobile dev cycle.
+- Led LeanUX efforts for cross-platform financial education tools.  
+- Built a browser-based Google Glass simulator before official hardware release.  
+- Championed user testing, iteration, and analytics in mobile development lifecycle.
 
-### <span class="employer">Projekt202</span> <span class="location">Austin, TX</span> <span class="duration">2012</span> <span class="role">User Interface Developer</span>
+### **Projekt202** – *Austin, TX*  
+**User Interface Developer**  
+*2012*
 
-- Developed international mobile sites with distributed architectures.
-- Delivered front-end features using Backbone.js, jQuery, and Bootstrap.
-- Launched CMS-backed digital solutions using Drupal.
+- Built international mobile-first web solutions with Backbone.js, Bootstrap, and REST APIs.  
+- Delivered enterprise CMS platforms using Drupal.
 
-### <span class="employer">Perficient</span> <span class="location">Austin, TX</span> <span class="duration">2011</span> <span class="role">User Interface Developer</span>
+### **Perficient** – *Austin, TX*  
+**User Interface Developer**  
+*2011*
 
-- Designed wireframes and UI specs for enterprise applications.
-- Built and maintained JavaScript libraries and CSS for large-scale websites.
+- Created responsive UI components and interaction flows for large-scale enterprise websites.  
+- Developed reusable JavaScript components and CSS libraries.
 
-### <span class="employer">Simply Interactive</span> <span class="location">Austin, TX</span> <span class="duration">2011–2012</span> <span class="role">Lead Developer</span>
+### **Simply Interactive** – *Austin, TX*  
+**Lead Developer**  
+*2011 – 2012*
 
-- Oversaw full-stack development for corporate and educational platforms.
-- Set development standards and introduced agile workflows.
-- Managed hiring, tooling, and vendor selection for high-scale client work.
+- Directed front- and back-end development for education and corporate projects.  
+- Implemented Agile workflows, team standards, and hiring processes.
 
-### <span class="employer">BazaarVoice</span> <span class="location">Austin, TX</span> <span class="duration">2010</span> <span class="role">Implementation Designer</span>
+### **BazaarVoice** – *Austin, TX*  
+**Implementation Designer**  
+*2010*
 
-- Implemented CSS themes for major retail clients including Microsoft and Gillette.
-- Developed PHP tools to automate and localize email templates, saving hundreds of engineer hours.
+- Created CSS implementations for clients like Microsoft, JCPenney, and Gillette.  
+- Built a PHP-based tool for templated, localized email design—saving hundreds of engineer hours.
 
-### <span class="employer">Heatwave Interactive</span> <span class="location">Austin, TX</span> <span class="duration">2009–2010</span> <span class="role">Developer</span>
+### **Heatwave Interactive** – *Austin, TX*  
+**Developer**  
+*2009 – 2010*
 
-- Delivered AJAX-driven UIs and PHP backends for social game platforms.
-- Built SQL-based analytics dashboards for real-time in-game leaderboards.
+- Developed front-end and back-end features for social gaming platforms.  
+- Created SQL-based analytics dashboards to support player leaderboard ranking.
 
-### <span class="employer">Charity Dynamics Inc.</span> <span class="location">Austin, TX</span> <span class="duration">2008–2009</span> <span class="role">Interactive Designer</span>
+### **Charity Dynamics Inc.** – *Austin, TX*  
+**Interactive Designer**  
+*2008 – 2009*
 
-- Developed fundraising apps that generated over $1M in donations.
-- Delivered branded websites, Facebook apps, and digital campaigns for nonprofit organizations.
+- Designed digital fundraising applications that raised over $1M for nonprofits.  
+- Produced branded websites, Facebook apps, and digital campaign materials.
 
-## Skills
+---
 
-**Programming Languages**: JavaScript, TypeScript, Python, SQL, C, C++, PHP, R, Linux Shell  
-**Frameworks & Libraries**: React, Node.js, Angular, D3, Django, Flask, FastAPI, Three.js, MobX, Plotly  
-**Cloud Platforms**: AWS, Azure, GCP  
-**Data Science & Machine Learning**: TensorFlow, pandas, scikit-learn, NumPy  
-**Testing Tools**: Vitest, Jest, Mocha, Playwright, Puppeteer, Selenium  
-**Web Technologies**: HTML5, CSS, SASS, LESS, Material UI, Bootstrap, Tailwind, Ant Design  
-**Databases**: PostgreSQL, MongoDB, MySQL, DynamoDB  
-**Other**: WebGL, OAuth, JWT, WebSockets, Git, Docker, GitHub Actions, Prometheus, Grafana
+## **Skills**
 
-## Education
+**Languages:**  
+JavaScript, TypeScript, Python, SQL, C, C++, PHP, R, Bash  
 
-### BFA in Communication Design - Texas State University
+**Frameworks & Libraries:**  
+React, Node.js, Angular, D3, Django, Flask, FastAPI, Three.js, MobX, Plotly  
 
-May 2008
+**Cloud Platforms:**  
+AWS, Azure, Google Cloud Platform  
 
-### AWS Certifications
+**Machine Learning & Data Science:**  
+TensorFlow, pandas, NumPy, scikit-learn  
 
-- Solutions Architect - Professional
-- Developer - Associate
+**Testing & Automation:**  
+Vitest, Jest, Mocha, Puppeteer, Playwright, Selenium, GitHub Actions  
 
-### Machine Learning Specialization
+**Web Technologies:**  
+HTML5, CSS3, SASS, LESS, Tailwind, Material UI, Bootstrap, Ant Design, WebGL, OAuth, JWT, WebSockets  
 
-Stanford University  
-February 2023
+**Databases:**  
+PostgreSQL, MongoDB, MySQL, DynamoDB  
 
-- Coursework in supervised, unsupervised, and deep learning.
-- Built predictive analytics tools in TensorFlow and scikit-learn.
+**Other Tools:**  
+Docker, Git, Prometheus, Grafana, CI/CD, Webpack, Vite  
 
-## Honors
+---
 
-### Davey Awards 2014
+## **Education**
 
-- Gold in Education category
-- Silver in Lifestyle category
-- Silver in Games category
+**BFA in Communication Design**  
+Texas State University, May 2008
 
-### W3 Awards 2014
+---
 
-- Silver in Education category
-- Silver in Lifestyle category
+## **Certifications**
 
-### Best in Biz Awards 2014
+- AWS Certified Solutions Architect – Professional  
+- AWS Certified Developer – Associate  
+- Stanford University – Machine Learning Specialization *(February 2023)*  
+  - Supervised/unsupervised learning, deep learning, predictive modeling in TensorFlow and scikit-learn
 
-- Bronze in Best App
+---
 
-### Sounds Seen VJ Championship
+## **Honors & Awards**
 
-- 2nd place opening week
-- 1st place in championship
+**Davey Awards (2014):**  
+- Gold – Education  
+- Silver – Lifestyle  
+- Silver – Games  
 
-### Node.js Contributor
+**W3 Awards (2014):**  
+- Silver – Education  
+- Silver – Lifestyle  
+
+**Best in Biz Awards (2014):**  
+- Bronze – Best App  
+
+**Sounds Seen VJ Championship:**  
+- 2nd Place – Opening Week  
+- 1st Place – Final Round  
+
+**Open Source:**  
+- Node.js Contributor
