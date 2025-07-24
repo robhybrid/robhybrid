@@ -20,10 +20,6 @@ jobs:
     # TODO: Replace with custom runner
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: ./apps/nest-vite
-
     steps:
       # TODO: Refactor this to an action that runs per app
       - uses: actions/checkout@v4
@@ -37,5 +33,6 @@ jobs:
       # TODO: Cache all packages
       - name: Install Node Build
         run: |
+          cd apps/nest-vite
           pnpm i
           pnpm build
