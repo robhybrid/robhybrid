@@ -1,0 +1,75 @@
+name: Deploy Private OpenAI Gateway
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Manual trigger
+
+env:
+  AWS_REGION: us-east-1
+  TF_VERSION: 1.8.0
+  PROJECT_NAME: openai-private-gateway
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Set up Terraform
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TF_VERSION }}
+
+      # Configure AWS credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      # Install Python dependencies & package Lambda
+      - name: Build Lambda package
+        run: |
+          cd lambda
+          pip install -r requirements.txt --target .
+          zip -r ../lambda.zip .
+          cd ..
+
+      # Push secrets to AWS Secrets Manager
+      - name: Store OpenAI API Key in Secrets Manager
+        run: |
+          aws secretsmanager put-secret-value \
+            --secret-id "${PROJECT_NAME}-openai-api-key" \
+            --secret-string "${{ secrets.OPENAI_API_KEY }}" || \
+          aws secretsmanager create-secret \
+            --name "${PROJECT_NAME}-openai-api-key" \
+            --secret-string "${{ secrets.OPENAI_API_KEY }}"
+
+      - name: Store JWT Secret in Secrets Manager
+        run: |
+          aws secretsmanager put-secret-value \
+            --secret-id "${PROJECT_NAME}-jwt-secret" \
+            --secret-string "${{ secrets.JWT_SECRET }}" || \
+          aws secretsmanager create-secret \
+            --name "${PROJECT_NAME}-jwt-secret" \
+            --secret-string "${{ secrets.JWT_SECRET }}"
+
+      # Terraform init/plan/apply
+      - name: Terraform Init
+        working-directory: infra
+        run: terraform init
+
+      - name: Terraform Plan
+        working-directory: infra
+        run: terraform plan -var "project_name=${{ env.PROJECT_NAME }}" -var "aws_region=${{ env.AWS_REGION }}"
+
+      - name: Terraform Apply
+        working-directory: infra
+        run: terraform apply -auto-approve -var "project_name=${{ env.PROJECT_NAME }}" -var "aws_region=${{ env.AWS_REGION }}"
