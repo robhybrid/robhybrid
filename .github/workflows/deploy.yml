@@ -47,13 +47,13 @@ jobs:
         run: |
           aws secretsmanager put-secret-value \
             --secret-id "${PROJECT_NAME}-openai-api-key" \
-            --secret-string "${{ secrets.OPENAI_API_KEY }}" || \
+            --secret-string "${{ secrets.OPENAI_API_KEY }}"
 
       - name: Store JWT Secret in Secrets Manager
         run: |
           aws secretsmanager put-secret-value \
             --secret-id "${PROJECT_NAME}-jwt-secret" \
-            --secret-string "${{ secrets.JWT_SECRET }}" || \
+            --secret-string "${{ secrets.JWT_SECRET }}"
 
       # Terraform init/plan/apply
       - name: Terraform Init
