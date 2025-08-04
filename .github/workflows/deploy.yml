@@ -54,9 +54,6 @@ jobs:
           aws secretsmanager put-secret-value \
             --secret-id "${PROJECT_NAME}-jwt-secret" \
             --secret-string "${{ secrets.JWT_SECRET }}" || \
-          aws secretsmanager create-secret \
-            --name "${PROJECT_NAME}-jwt-secret" \
-            --secret-string "${{ secrets.JWT_SECRET }}"
 
       # Terraform init/plan/apply
       - name: Terraform Init
