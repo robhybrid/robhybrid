@@ -42,14 +42,12 @@ jobs:
           cd ..
 
       # Push secrets to AWS Secrets Manager
+      # TODO: push id onto history stack.
       - name: Store OpenAI API Key in Secrets Manager
         run: |
           aws secretsmanager put-secret-value \
             --secret-id "${PROJECT_NAME}-openai-api-key" \
             --secret-string "${{ secrets.OPENAI_API_KEY }}" || \
-          aws secretsmanager create-secret \
-            --name "${PROJECT_NAME}-openai-api-key" \
-            --secret-string "${{ secrets.OPENAI_API_KEY }}"
 
       - name: Store JWT Secret in Secrets Manager
         run: |
