@@ -128,6 +128,3 @@ resource "aws_api_gateway_deployment" "proxy_deployment" {
   stage_name  = "prod"
 }
 
-output "api_url" {
-  value = "${aws_api_gateway_deployment.proxy_deployment.invoke_url}/proxy"
-}
