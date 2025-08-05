@@ -129,6 +129,15 @@ resource "aws_api_gateway_deployment" "proxy_deployment" {
     aws_api_gateway_integration.proxy_integration
   ]
   rest_api_id = aws_api_gateway_rest_api.proxy_api.id
-  stage_name  = "prod"
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+resource "aws_api_gateway_stage" "proxy_stage" {
+  deployment_id = aws_api_gateway_deployment.proxy_deployment.id
+  rest_api_id   = aws_api_gateway_rest_api.proxy_api.id
+  stage_name    = "prod"
 }
 

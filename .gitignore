@@ -134,3 +134,25 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Local .terraform directories
+**/.terraform/
+# Terraform state files
+*.tfstate
+*.tfstate.*
+# Crash log files
+crash.log
+crash.*.log
+# Terraform variable files (potentially containing sensitive data)
+*.tfvars
+*.tfvars.json
+# Override files (often used for local development and not meant for version control)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+# CLI configuration files
+.terraformrc
+terraform.rc
+# Saved plan files (if created with -out flag)
+*.tfplan*
