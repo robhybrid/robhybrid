@@ -13,25 +13,25 @@ provider "aws" {
 }
 
 # ---------- IAM Role for Lambda ----------
-resource "aws_iam_role" "lambda_exec_role" {
-  name = "${var.project_name}-lambda-exec-role"
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Effect = "Allow"
-        Principal = {
-          Service = "lambda.amazonaws.com"
-        }
-        Action = "sts:AssumeRole"
-      }
-    ]
-  })
-  lifecycle {
-    create_before_destroy = true
-    ignore_changes = [name]
-  }
-}
+# resource "aws_iam_role" "lambda_exec_role" {
+#   name = "${var.project_name}-lambda-exec-role"
+#   assume_role_policy = jsonencode({
+#     Version = "2012-10-17"
+#     Statement = [
+#       {
+#         Effect = "Allow"
+#         Principal = {
+#           Service = "lambda.amazonaws.com"
+#         }
+#         Action = "sts:AssumeRole"
+#       }
+#     ]
+#   })
+#   lifecycle {
+#     create_before_destroy = true
+#     ignore_changes = [name]
+#   }
+# }
 
 resource "aws_iam_policy_attachment" "lambda_basic_execution" {
   name       = "${var.project_name}-lambda-basic-execution"
@@ -64,12 +64,12 @@ resource "aws_iam_policy_attachment" "attach_secret_access" {
 }
 
 # ---------- Secrets Manager ----------
-resource "aws_secretsmanager_secret" "openai_api_key" {
-  name = "${var.project_name}-openai-api-key"
-  lifecycle {
-    ignore_changes = [name]
-  }
-}
+# resource "aws_secretsmanager_secret" "openai_api_key" {
+#   name = "${var.project_name}-openai-api-key"
+#   lifecycle {
+#     ignore_changes = [name]
+#   }
+# }
 
 # The value will be manually added or via GitHub Actions at deployment
 
