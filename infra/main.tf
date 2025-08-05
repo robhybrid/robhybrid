@@ -66,6 +66,9 @@ resource "aws_iam_policy_attachment" "attach_secret_access" {
 # ---------- Secrets Manager ----------
 resource "aws_secretsmanager_secret" "openai_api_key" {
   name = "${var.project_name}-openai-api-key"
+  lifecycle {
+    ignore_changes = [name]
+  }
 }
 
 # The value will be manually added or via GitHub Actions at deployment
