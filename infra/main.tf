@@ -27,6 +27,10 @@ resource "aws_iam_role" "lambda_exec_role" {
       }
     ]
   })
+  lifecycle {
+    create_before_destroy = true
+    ignore_changes = [name]
+  }
 }
 
 resource "aws_iam_policy_attachment" "lambda_basic_execution" {

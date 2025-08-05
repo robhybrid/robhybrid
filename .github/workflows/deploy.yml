@@ -1,7 +1,7 @@
 name: Deploy Private OpenAI Gateway
 
 on:
-  push: # Trigger on push to main branch
+  push:
     branches: ["**"]
   workflow_dispatch: # Manual trigger
 
