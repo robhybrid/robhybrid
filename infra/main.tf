@@ -51,7 +51,7 @@ resource "aws_iam_policy" "lambda_secret_access" {
         Action = [
           "secretsmanager:GetSecretValue"
         ],
-        Resource = aws_secretsmanager_secret.openai_api_key.arn
+        Resource = data.aws_secretsmanager_secret.openai_api_key.arn
       }
     ]
   })
@@ -80,6 +80,7 @@ data "aws_secretsmanager_secret_version" "openai_api_key" {
 }
 
 
+
 # The value will be manually added or via GitHub Actions at deployment
 
 # ---------- Lambda Function ----------
@@ -94,7 +95,7 @@ resource "aws_lambda_function" "proxy_lambda" {
 
   environment {
     variables = {
-      SECRET_NAME = aws_secretsmanager_secret.openai_api_key.name
+      SECRET_NAME = data.aws_secretsmanager_secret.openai_api_key.name #aws_secretsmanager_secret.openai_api_key.name
       REGION      = var.aws_region
     }
   }
