@@ -71,6 +71,15 @@ resource "aws_iam_policy_attachment" "attach_secret_access" {
 #   }
 # }
 
+data "aws_secretsmanager_secret" "openai_api_key" {
+  name = "${var.project_name}-openai-api-key"
+}
+
+data "aws_secretsmanager_secret_version" "openai_api_key" {
+  secret_id = data.aws_secretsmanager_secret.openai_api_key.id
+}
+
+
 # The value will be manually added or via GitHub Actions at deployment
 
 # ---------- Lambda Function ----------
