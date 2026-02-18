@@ -1,0 +1,115 @@
+{
+  "@ld": "https://schema.org",
+  "@type": "Person",
+  "name": "Robert Townsend",
+  "alternateName": "Robert Williams",
+  "email": "rob@robhybrid.com",
+  "telephone": "512-565-3884",
+  "url": "http://www.robhybrid.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Austin",
+    "addressRegion": "TX",
+    "postalCode": "78723"
+  },
+  "jobTitle": "Senior Software Engineer",
+  "description": "Full-stack software engineer with 15+ years experience. Two-time Amazonian. AWS Solutions Architect Professional. Stanford ML Specialization. Specializes in AI-augmented development, multi-agent orchestration, React, and AWS cloud architecture.",
+  "knowsAbout": [
+    "JavaScript", "TypeScript", "Python", "React", "Node.js", "AWS",
+    "Amazon Bedrock", "MCP Servers", "Multi-Agent Orchestration",
+    "Cloudscape", "FastAPI", "D3.js", "WebGL", "Three.js",
+    "Docker", "CI/CD", "TensorFlow", "RAG", "HIPAA",
+    "Lambda", "S3", "CloudFront", "DynamoDB", "API Gateway"
+  ],
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "AWS Certified Solutions Architect - Professional",
+      "credentialCategory": "certification"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "AWS Certified Developer - Associate",
+      "credentialCategory": "certification"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Stanford Machine Learning Specialization",
+      "credentialCategory": "specialization",
+      "dateEarned": "2023-02"
+    }
+  ],
+  "alumniOf": {
+    "@type": "EducationalOrganization",
+    "name": "Texas State University"
+  },
+  "worksFor": [
+    {
+      "@type": "Organization",
+      "name": "Amazon Web Services",
+      "role": "Web Developer, AWS Marketplace UX",
+      "startDate": "2025-10",
+      "endDate": "2026-03",
+      "highlights": [
+        "Architected multi-agent AI orchestration framework with 4+ specialized agents, reducing task completion time by ~60%",
+        "Built 2 production MCP servers: macOS UI automation (Python/PyObjC) and tmux task delegation (Node.js)",
+        "Developed AWS Style Guide Chatbot powered by Amazon Bedrock + RAG",
+        "Created RLM benchmarking framework across 10 AWS service domains",
+        "Built Fusion Agent Registry managing 20+ AI agent configurations",
+        "Automated CR lifecycle with AI agents, reducing manual review overhead by ~50%",
+        "Shipped React/TypeScript/Cloudscape UI components to millions of AWS customers"
+      ]
+    },
+    {
+      "@type": "Organization",
+      "name": "TotalEnergies",
+      "role": "Full-Stack Developer",
+      "startDate": "2024-04",
+      "endDate": "2025-06",
+      "highlights": [
+        "Built React/FastAPI energy storage modeling platform with AWS Lambda backend",
+        "Refactored Flask to FastAPI, enabling async processing for long-running simulations",
+        "Closed 100% of known security vulnerabilities across full stack",
+        "Built CI/CD with visual regression testing in GitHub Actions",
+        "Led UX research directly with energy traders"
+      ]
+    },
+    {
+      "@type": "Organization",
+      "name": "Airstrip Technologies",
+      "role": "Lead Web App Developer",
+      "startDate": "2017-06",
+      "endDate": "2024-01",
+      "highlights": [
+        "Architected HIPAA-compliant telehealth platforms with live remote patient monitoring",
+        "Built real-time WebGL telemetry dashboard with sub-second rendering",
+        "Led containerization and CI/CD automation",
+        "Directed cross-functional teams through multiple major releases"
+      ]
+    },
+    {
+      "@type": "Organization",
+      "name": "Amazon",
+      "role": "Software Development Engineer",
+      "startDate": "2016-06",
+      "endDate": "2017-05",
+      "highlights": [
+        "Built internal tools for global mobile device software deployment",
+        "Created D3/React dashboards for provisioning performance",
+        "Designed secure REST APIs with Java backend integration"
+      ]
+    },
+    {
+      "@type": "Organization",
+      "name": "Mutual Mobile",
+      "role": "Senior Web Developer",
+      "startDate": "2012-10",
+      "endDate": "2016-05",
+      "highlights": [
+        "Led LeanUX for award-winning financial education tools",
+        "Built Google Glass simulator before hardware release",
+        "Gold Davey Award, multiple W3 Awards, Best in Biz Bronze"
+      ]
+    }
+  ]
+}
