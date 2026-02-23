@@ -1,0 +1,286 @@
+{
+    "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+    "basics": {
+        "name": "Robert Townsend",
+        "label": "Full-Stack Developer → AI Agent Architect",
+        "image": "",
+        "email": "rob@robhybrid.com",
+        "phone": "512-565-3884",
+        "url": "http://www.robhybrid.com",
+        "summary": "Full-stack developer with 15+ years building production web applications across healthcare, energy, fintech, and cloud infrastructure. Currently focused on AI agent orchestration and multi-agent systems at AWS. I started as a designer — that path from visual communication to multi-agent orchestration taught me that the best software is built at the intersection of human experience and technical depth.",
+        "location": {
+            "city": "Austin",
+            "region": "TX",
+            "postalCode": "78723",
+            "countryCode": "US"
+        },
+        "profiles": [
+            {
+                "network": "GitHub",
+                "username": "robhybrid",
+                "url": "https://github.com/robhybrid"
+            },
+            {
+                "network": "LinkedIn",
+                "username": "robert-townsend-b4313911",
+                "url": "https://www.linkedin.com/in/robert-townsend-b4313911"
+            }
+        ]
+    },
+    "work": [
+        {
+            "name": "Amazon Web Services",
+            "position": "Web Developer, AWS Marketplace UX",
+            "url": "https://aws.amazon.com",
+            "startDate": "2025-10-01",
+            "endDate": "2026-03-31",
+            "summary": "AI agent orchestration and frontend delivery for AWS Marketplace",
+            "highlights": [
+                "Architected a multi-agent AI orchestration framework coordinating 4+ specialized agents in parallel — reduced complex development task completion time by 60%",
+                "Built 2 production MCP (Model Context Protocol) servers: macOS UI automation (Python/PyObjC, 15+ tools) and tmux task delegation (Node.js, 8+ tools)",
+                "Developed an AWS Bedrock + RAG chatbot that became the single source of truth for Cloudscape/Venue design system guidance",
+                "Created the Recursive Language Model (RLM) benchmarking framework, comparing orchestration strategies across 10 AWS service domains",
+                "Built Fusion Agent Registry and CLI tooling managing 20+ AI agent configurations",
+                "Automated the code review lifecycle with custom AI agents — cut manual review overhead by 50%",
+                "Shipped frontend UI components to millions of AWS customers using React, TypeScript, and Cloudscape"
+            ]
+        },
+        {
+            "name": "TotalEnergies",
+            "position": "Full-Stack Developer",
+            "startDate": "2024-04-01",
+            "endDate": "2025-06-30",
+            "summary": "Energy storage modeling platform with React/FastAPI/AWS",
+            "highlights": [
+                "Built a React/FastAPI application modeling grid-scale energy storage — processed simulations across 10+ year horizons with an AWS Lambda backend",
+                "Migrated the entire backend from Flask to FastAPI, accelerating API response times and enabling async processing",
+                "Engineered CI/CD pipelines in GitHub Actions with automated unit, integration, and visual regression tests",
+                "Eliminated 100% of known security vulnerabilities across the full application stack",
+                "Conducted stakeholder interviews and delivered a UX redesign informed by direct user testing with energy traders"
+            ]
+        },
+        {
+            "name": "Airstrip Technologies",
+            "position": "Lead Web App Developer",
+            "startDate": "2017-06-01",
+            "endDate": "2024-01-31",
+            "summary": "HIPAA-compliant telehealth platforms with real-time patient monitoring",
+            "highlights": [
+                "Architected HIPAA-compliant telehealth platforms with live remote patient monitoring, deployed across hospital systems nationwide",
+                "Built a real-time WebGL telemetry dashboard rendering live patient vitals — handled continuous data streams with sub-second latency",
+                "Modernized infrastructure: containerized microservices, automated CI/CD pipelines, and hardened deployment security",
+                "Directed cross-functional teams spanning product, engineering, QA, and design through multiple major platform releases"
+            ]
+        },
+        {
+            "name": "Amazon",
+            "position": "Software Development Engineer (Mobile Device Management)",
+            "url": "https://www.amazon.com",
+            "startDate": "2016-06-01",
+            "endDate": "2017-05-31",
+            "highlights": [
+                "Built internal tools managing software deployment across Amazon's global mobile device fleet (thousands of devices)",
+                "Created D3/React data dashboards tracking provisioning performance in real time",
+                "Designed secure REST APIs integrating with Java backend services"
+            ]
+        },
+        {
+            "name": "Mutual Mobile",
+            "position": "Senior Web Developer",
+            "startDate": "2012-10-01",
+            "endDate": "2016-05-31",
+            "highlights": [
+                "Spearheaded LeanUX methodology for cross-platform financial education tools — won Gold Davey Award and multiple W3 Awards",
+                "Built a browser-based Google Glass simulator before official hardware release",
+                "Championed user testing, iteration, and analytics-driven development across mobile and web platforms"
+            ]
+        },
+        {
+            "name": "Projekt202",
+            "position": "User Interface Developer",
+            "startDate": "2012-01-01",
+            "endDate": "2012-09-30",
+            "highlights": [
+                "Built international mobile-first web solutions with Backbone.js, Bootstrap, and REST APIs"
+            ]
+        },
+        {
+            "name": "Simply Interactive",
+            "position": "Lead Developer",
+            "startDate": "2011-01-01",
+            "endDate": "2012-01-01",
+            "highlights": [
+                "Directed full-stack development for education and corporate clients; established Agile workflows"
+            ]
+        },
+        {
+            "name": "Perficient",
+            "position": "User Interface Developer",
+            "startDate": "2011-01-01",
+            "endDate": "2011-12-31",
+            "highlights": [
+                "Created responsive UI components and reusable JS/CSS libraries for enterprise websites"
+            ]
+        },
+        {
+            "name": "BazaarVoice",
+            "position": "Implementation Designer",
+            "startDate": "2010-01-01",
+            "endDate": "2010-12-31",
+            "highlights": [
+                "Built CSS implementations for Microsoft, JCPenney, and Gillette; created PHP email templating tool saving hundreds of engineer hours"
+            ]
+        },
+        {
+            "name": "Heatwave Interactive",
+            "position": "Developer",
+            "startDate": "2009-01-01",
+            "endDate": "2010-12-31",
+            "highlights": [
+                "Developed front/back-end features for social gaming platforms with SQL analytics dashboards"
+            ]
+        },
+        {
+            "name": "Charity Dynamics Inc.",
+            "position": "Interactive Designer",
+            "startDate": "2008-01-01",
+            "endDate": "2009-12-31",
+            "highlights": [
+                "Designed digital fundraising applications raising $1M+ for nonprofits"
+            ]
+        }
+    ],
+    "education": [
+        {
+            "institution": "Texas State University",
+            "area": "Communication Design",
+            "studyType": "BFA",
+            "endDate": "2008-05-01"
+        }
+    ],
+    "certificates": [
+        {
+            "name": "AWS Certified Solutions Architect – Professional",
+            "issuer": "Amazon Web Services"
+        },
+        {
+            "name": "AWS Certified Developer – Associate",
+            "issuer": "Amazon Web Services"
+        },
+        {
+            "name": "Machine Learning Specialization",
+            "issuer": "Stanford University",
+            "date": "2023-02-01"
+        }
+    ],
+    "skills": [
+        {
+            "name": "Languages",
+            "keywords": [
+                "JavaScript",
+                "TypeScript",
+                "Python",
+                "SQL",
+                "C",
+                "C++",
+                "PHP",
+                "R",
+                "Bash"
+            ]
+        },
+        {
+            "name": "Frontend",
+            "keywords": [
+                "React",
+                "D3.js",
+                "Three.js",
+                "WebGL",
+                "Cloudscape",
+                "Angular",
+                "Plotly"
+            ]
+        },
+        {
+            "name": "Backend",
+            "keywords": [
+                "Node.js",
+                "FastAPI",
+                "Django",
+                "Flask"
+            ]
+        },
+        {
+            "name": "AWS",
+            "keywords": [
+                "Bedrock",
+                "Lambda",
+                "S3",
+                "CloudFront",
+                "API Gateway",
+                "DynamoDB",
+                "CodePipeline",
+                "CloudFormation"
+            ]
+        },
+        {
+            "name": "AI & ML",
+            "keywords": [
+                "Amazon Bedrock",
+                "MCP Servers",
+                "Multi-Agent Orchestration",
+                "RAG",
+                "TensorFlow",
+                "scikit-learn"
+            ]
+        },
+        {
+            "name": "DevOps",
+            "keywords": [
+                "Docker",
+                "Git",
+                "GitHub Actions",
+                "CI/CD",
+                "Prometheus",
+                "Grafana",
+                "Terraform"
+            ]
+        },
+        {
+            "name": "Testing",
+            "keywords": [
+                "Vitest",
+                "Jest",
+                "Playwright",
+                "Puppeteer",
+                "Selenium"
+            ]
+        }
+    ],
+    "awards": [
+        {
+            "title": "Gold Davey Award (Education)",
+            "date": "2014-01-01",
+            "awarder": "Academy of Interactive and Visual Arts"
+        },
+        {
+            "title": "Silver W3 Awards (Education, Lifestyle)",
+            "date": "2014-01-01",
+            "awarder": "Academy of Interactive and Visual Arts"
+        },
+        {
+            "title": "Best in Biz Awards Bronze (Best App)",
+            "date": "2014-01-01",
+            "awarder": "Best in Biz Awards"
+        },
+        {
+            "title": "Sounds Seen VJ Championship: 1st Place",
+            "awarder": "Sounds Seen"
+        }
+    ],
+    "meta": {
+        "canonical": "https://github.com/robhybrid/robhybrid",
+        "version": "v2.0.0",
+        "lastModified": "2026-02-23",
+        "theme": "elegant"
+    }
+}

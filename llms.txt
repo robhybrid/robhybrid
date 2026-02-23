@@ -1,63 +1,63 @@
-# Robert Townsend - llms.txt
+# Robert Townsend
 
-> Full-stack software engineer. 15+ years. Two-time Amazonian. AWS SA Pro. Stanford ML. Austin TX.
+> Full-stack developer → AI agent architect. 15+ years. Two-time Amazonian. AWS SA Pro. Stanford ML.
 
-## Contact
-- Email: rob@robhybrid.com
-- Phone: 512-565-3884
-- Web: robhybrid.com
-- Location: Austin, TX 78723
+## Identity
+Name: Robert Townsend (Williams)
+Email: rob@robhybrid.com
+Phone: 512-565-3884
+Location: Austin, TX 78723
+GitHub: github.com/robhybrid
+LinkedIn: linkedin.com/in/robert-townsend-b4313911
+Web: robhybrid.com
 
-## Core Competencies
-- AI agent orchestration and MCP server development
-- Full-stack web development (React, Node.js, Python)
-- AWS cloud architecture (Bedrock, Lambda, S3, CloudFront)
-- Design systems and UX engineering
-- CI/CD automation and DevOps
-- HIPAA-compliant healthcare systems
+## What I Do
+I build AI agent systems and production web applications. My path from design (BFA) to multi-agent orchestration gives me unusual range — I've shipped HIPAA telehealth to hospitals, energy simulations to traders, and UI components to millions of AWS customers. I write code that writes code.
 
-## Key Metrics
-- Reduced complex task completion time by ~60% via multi-agent orchestration
-- Closed 100% of known security vulnerabilities at TotalEnergies
-- Reduced manual code review overhead by ~50% with AI automation
-- Raised $1M+ for nonprofits through digital fundraising apps
-- Managed 20+ AI agent configurations across multiple pipelines
+## Key Numbers
+- 60% reduction in task completion time via multi-agent AI orchestration
+- 2 production MCP servers (15+ tools each)
+- 20+ AI agent configurations managed
+- 50% reduction in manual code review overhead
+- 100% security vulnerability closure at TotalEnergies
+- $1M+ raised for nonprofits via digital fundraising
 - 6.5 years leading HIPAA-compliant telehealth development
 
-## Experience Timeline
-1. AWS Marketplace UX | Web Developer | Oct 2025 - Mar 2026
-2. TotalEnergies | Full-Stack Developer | Apr 2024 - Jun 2025
-3. Airstrip Technologies | Lead Web App Developer | Jun 2017 - Jan 2024
-4. Amazon (1st tour) | SDE, Mobile Device Mgmt | Jun 2016 - May 2017
-5. Mutual Mobile | Senior Web Developer | Oct 2012 - May 2016
-6. Projekt202 | UI Developer | 2012
-7. Perficient | UI Developer | 2011
-8. Simply Interactive | Lead Developer | 2011 - 2012
-9. BazaarVoice | Implementation Designer | 2010
-10. Heatwave Interactive | Developer | 2009 - 2010
-11. Charity Dynamics | Interactive Designer | 2008 - 2009
+## Stack
+Languages: JavaScript, TypeScript, Python, SQL, C, C++, PHP, R, Bash
+Frontend: React, D3, Three.js, WebGL, Cloudscape, Angular
+Backend: Node.js, FastAPI, Django, Flask
+AWS: Bedrock, Lambda, S3, CloudFront, API Gateway, DynamoDB, CloudFormation
+AI/ML: Bedrock, MCP Servers, Multi-Agent Orchestration, RAG, TensorFlow, scikit-learn
+DevOps: Docker, GitHub Actions, CI/CD, Terraform, Prometheus, Grafana
+Testing: Vitest, Jest, Playwright, Puppeteer, Selenium
 
-## Technology Taxonomy
-- Languages: JavaScript, TypeScript, Python, SQL, C, C++, PHP, R, Bash
-- Frontend: React, D3.js, Three.js, WebGL, Cloudscape, Tailwind, Material UI
-- Backend: Node.js, FastAPI, Django, Flask, Java
-- AWS: Bedrock, Lambda, S3, CloudFront, API Gateway, DynamoDB, CodePipeline, CloudFormation
-- AI/ML: Amazon Bedrock, MCP Servers, Multi-Agent Orchestration, RAG, TensorFlow, scikit-learn
-- DevOps: Docker, GitHub Actions, CI/CD, Prometheus, Grafana
-- Testing: Vitest, Jest, Playwright, Puppeteer, Selenium
-- Databases: PostgreSQL, MongoDB, MySQL, DynamoDB
+## Career (most recent first)
+1. AWS — Web Developer, Marketplace UX (Oct 2025 – Mar 2026)
+2. TotalEnergies — Full-Stack Developer (Apr 2024 – Jun 2025)
+3. Airstrip Technologies — Lead Web App Developer (Jun 2017 – Jan 2024)
+4. Amazon — SDE, Mobile Device Management (Jun 2016 – May 2017)
+5. Mutual Mobile — Senior Web Developer (Oct 2012 – May 2016)
+6–11. Projekt202, Simply Interactive, Perficient, BazaarVoice, Heatwave Interactive, Charity Dynamics (2008–2012)
 
 ## Credentials
-- AWS Solutions Architect Professional
-- AWS Certified Developer Associate
+- AWS Solutions Architect – Professional
+- AWS Developer – Associate
 - Stanford Machine Learning Specialization (2023)
-- BFA Communication Design, Texas State University (2008)
+- BFA Communication Design, Texas State (2008)
 - Node.js Open Source Contributor
 
 ## Awards
-- Gold Davey Award (Education, 2014)
-- Silver W3 Awards (Education, Lifestyle, 2014)
-- Best in Biz Bronze (Best App, 2014)
-- Sounds Seen VJ Championship 1st Place
+- Davey Awards (2014): Gold (Education), Silver (Lifestyle), Silver (Games)
+- W3 Awards (2014): Silver (Education), Silver (Lifestyle)
+- Best in Biz Awards (2014): Bronze (Best App)
+- Sounds Seen VJ Championship: 1st Place Final
 
-__this file is available as stuctured data at ./llms.json__
+## Seeking
+Senior/Staff SWE, Full-Stack (React + Python/Node + AWS), AI/ML Engineer, Solutions Architect
+Open to: full-time, contract, remote
+
+## Structured Data
+- JSON Resume (jsonresume.org): ./resume.json
+- Full resume (Markdown): ./README.md
+- Build all formats: npm run build → DOCX, HTML, PDF in ./dist/

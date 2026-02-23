@@ -1,0 +1,37 @@
+{
+    "name": "robhybrid",
+    "version": "2.0.0",
+    "private": true,
+    "description": "Robert Townsend — Portfolio, Resume, and Bedrock AI Playground",
+    "scripts": {
+        "build": "./build-resume.sh",
+        "build:resume": "./build-resume.sh",
+        "build:playground": "cd bedrock-playground && npm run build",
+        "test": "./build-resume.sh > /dev/null 2>&1 && echo 'All formats built successfully' || (echo 'Build failed' && exit 1)",
+        "clean": "rm -rf dist/ build/ _site/",
+        "open": "open dist/index.html",
+        "open:pdf": "open dist/Robert_Townsend_Resume.pdf",
+        "open:docx": "open dist/Robert_Townsend_Resume.docx",
+        "infra:plan": "cd bedrock-playground/infra && terraform plan",
+        "infra:apply": "cd bedrock-playground/infra && terraform apply"
+    },
+    "keywords": [
+        "resume",
+        "portfolio",
+        "llms-txt",
+        "json-resume",
+        "aws",
+        "bedrock",
+        "react",
+        "typescript",
+        "ai-agents",
+        "mcp"
+    ],
+    "author": "Robert Townsend <rob@robhybrid.com> (http://www.robhybrid.com)",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/robhybrid/robhybrid.git"
+    },
+    "homepage": "https://github.com/robhybrid/robhybrid"
+}
