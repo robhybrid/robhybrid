@@ -1,8 +1,8 @@
 # ROBERT TOWNSEND (WILLIAMS)
 
-📞 512-565-3884
-✉️ rob@robhybrid.com
-📍 Austin, TX 78723
+📞 512-565-3884     
+✉️ rob@robhybrid.com     
+📍 Austin, TX 78723     
 
 ---
 
@@ -93,12 +93,29 @@
 
 ## Skills
 
-**Languages:** JavaScript, TypeScript, Python, SQL, C, C++, PHP, R, Bash
-**Frameworks:** React, Node.js, Angular, D3, Django, Flask, FastAPI, Three.js, Cloudscape, Plotly
-**AWS:** Bedrock, Lambda, S3, CloudFront, API Gateway, DynamoDB, CodePipeline, CloudFormation
-**AI & ML:** Amazon Bedrock, MCP Servers, Multi-Agent Orchestration, RAG, TensorFlow, scikit-learn
-**Testing:** Vitest, Jest, Playwright, Puppeteer, Selenium, GitHub Actions
-**Infra:** Docker, Git, Prometheus, Grafana, CI/CD, Webpack, Vite, tmux
+**Languages:**  
+JavaScript, TypeScript, Python, SQL, C, C++, PHP, R, Bash    
+
+**Frameworks & Libraries:**  
+React, Node.js, Angular, D3, Django, Flask, FastAPI, Three.js, MobX, Plotly    
+
+**Cloud Platforms:**  
+AWS, Azure, Google Cloud Platform    
+
+**Machine Learning & Data Science:**  
+TensorFlow, pandas, NumPy, scikit-learn    
+
+**Testing & Automation:**  
+Vitest, Jest, Mocha, Puppeteer, Playwright, Selenium, GitHub Actions    
+
+**Web Technologies:**  
+HTML5, CSS3, SASS, LESS, Tailwind, Material UI, Bootstrap, Ant Design, WebGL, OAuth, JWT, WebSockets    
+
+**Databases:**  
+PostgreSQL, MongoDB, MySQL, DynamoDB    
+
+**Other Tools:**  
+Docker, Git, Prometheus, Grafana, CI/CD, Webpack, Vite    
 
 ---
 
