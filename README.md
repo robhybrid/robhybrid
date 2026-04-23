@@ -1,7 +1,7 @@
 # ROBERT TOWNSEND (WILLIAMS)
 
-📞 512-565-3884     
-✉️ rob@robhybrid.com     
+📞 512-565-3884  
+✉️ [rob@robhybrid.com](mailto:rob@robhybrid.com)  
 📍 Austin, TX 78723     
 
 ---
@@ -30,7 +30,7 @@
 
 ### Airstrip Technologies — San Antonio, TX
 
-**Lead Web App Developer** | Jun 2017 – Jan 2024 (6.5 years)
+**Lead Web App Developer** | May 2017 – Jan 2024
 
 - Architected HIPAA-compliant telehealth platforms with live remote patient monitoring, deployed across hospital systems nationwide
 - Built a real-time WebGL telemetry dashboard rendering live patient vitals for hospital staff — handled continuous data streams with sub-second latency
@@ -39,7 +39,7 @@
 
 ### Amazon — Austin, TX
 
-**Software Development Engineer (Mobile Device Management)** | Jun 2016 – May 2017
+**Software Development Engineer (Mobile Device Management)** | Jul 2016 – Jan 2017
 
 - Built internal tools managing software deployment across Amazon's global mobile device fleet (thousands of devices)
 - Created D3/React data dashboards tracking provisioning performance in real time
@@ -47,7 +47,7 @@
 
 ### Mutual Mobile — Austin, TX
 
-**Senior Web Developer** | Oct 2012 – May 2016 (3.5 years)
+**Senior Web Developer** | Oct 2012 – Jun 2016
 
 - Spearheaded LeanUX methodology for cross-platform financial education tools — won Gold Davey Award and multiple W3 Awards
 - Built a browser-based Google Glass simulator before official hardware release, demonstrating rapid prototyping capability
@@ -55,37 +55,37 @@
 
 ### Projekt202 — Austin, TX
 
-**User Interface Developer** | 2012
+**User Interface Developer** | Oct 2011 – Feb 2012
 
 - Built international mobile-first web solutions with Backbone.js, Bootstrap, and REST APIs
 
 ### Perficient — Austin, TX
 
-**User Interface Developer** | 2011
+**User Interface Developer** | Mar 2011 – Oct 2011
 
 - Created responsive UI components and reusable JS/CSS libraries for enterprise websites
 
 ### Simply Interactive — Austin, TX
 
-**Lead Developer** | 2011 – 2012
+**Lead Developer** | Jan 2011 – Mar 2012
 
-- Directed full-stack development for education and corporate clients; established Agile workflows and hiring processes
+- Directed full-stack development for education and corporate clients; established Agile workflows and version control processes
 
 ### BazaarVoice — Austin, TX
 
-**Implementation Designer** | 2010
+**Implementation Designer** | Sep 2010 – Jan 2011
 
 - Built CSS implementations for Microsoft, JCPenney, and Gillette; created a PHP email templating tool saving hundreds of engineer hours
 
 ### Heatwave Interactive — Austin, TX
 
-**Developer** | 2009 – 2010
+**Developer** | Nov 2009 – Oct 2010
 
 - Developed front/back-end features for social gaming platforms with SQL analytics dashboards
 
 ### Charity Dynamics Inc. — Austin, TX
 
-**Interactive Designer** | 2008 – 2009
+**Interactive Designer** | Aug 2008 – Oct 2009
 
 - Designed digital fundraising applications raising $1M+ for nonprofits
 
@@ -121,7 +121,7 @@ Docker, Git, Prometheus, Grafana, CI/CD, Webpack, Vite
 
 ## Education
 
-**BFA in Communication Design** | Texas State University, May 2008
+**BFA in Communication Design** | Texas State University, Oct 2003 – May 2008
 
 ---
 
@@ -129,7 +129,7 @@ Docker, Git, Prometheus, Grafana, CI/CD, Webpack, Vite
 
 - AWS Certified Solutions Architect – Professional
 - AWS Certified Developer – Associate
-- Stanford University – Machine Learning Specialization (Feb 2023)
+- Stanford University – Machine Learning Specialization (Dec 2022 – Feb 2023, Coursera)
 
 ---
 

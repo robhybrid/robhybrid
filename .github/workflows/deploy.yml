@@ -31,6 +31,13 @@ jobs:
       - name: Build resume
         run: chmod +x build-resume.sh && ./build-resume.sh
 
+      - name: Upload dist as downloadable artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: resume-dist
+          path: dist
+          if-no-files-found: error
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
