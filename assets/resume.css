@@ -1,0 +1,110 @@
+/* Resume typography — Roboto embedded via @font-face (WeasyPrint + browsers) */
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  src: url("fonts/Roboto-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-style: italic;
+  font-weight: 400;
+  src: url("fonts/Roboto-Italic.ttf") format("truetype");
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  max-width: 850px;
+  margin: 40px auto;
+  padding: 0 20px;
+  color: #1a1a1a;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+h1 {
+  font-family: "Roboto", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #0a0a0a;
+}
+
+h2 {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #232f3e;
+  border-bottom: 1px solid #999;
+  padding-bottom: 4px;
+  margin-top: 28px;
+}
+
+h3 {
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #37475a;
+  margin-top: 20px;
+  margin-bottom: 4px;
+}
+
+strong {
+  color: #0a0a0a;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 24px 0;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 6px;
+}
+
+p {
+  margin: 6px 0;
+}
+
+a {
+  color: #0073bb;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+@media print {
+  body {
+    margin: 0;
+    padding: 0;
+    font-size: 11px;
+    max-width: 100%;
+  }
+  h1 {
+    font-size: 22px;
+  }
+  h2 {
+    font-size: 14px;
+  }
+  h3 {
+    font-size: 12px;
+  }
+  hr {
+    margin: 12px 0;
+  }
+}

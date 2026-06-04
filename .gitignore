@@ -143,6 +143,11 @@ Robert_Townsend_Resume.docx
 # Python venv (for weasyprint PDF generation)
 .venv/
 
+# Resume fonts & generated reference docx (fetched/built by build-resume.sh)
+assets/fonts/*.ttf
+assets/reference.docx
+assets/_ref_work/
+
 # IDE / workspace config
 .vscode/
 .kiro/

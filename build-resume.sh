@@ -1,6 +1,6 @@
 #!/bin/bash
 # Build resume in multiple formats from README.md
-# Requires: pandoc, python3
+# Requires: pandoc, python3, curl
 # Optional: weasyprint for PDF (python3 -m venv .venv && .venv/bin/pip install weasyprint)
 #
 # Step 1 runs sync-resume-from-readme.py: refreshes work[] in resume.json from README, then
@@ -12,11 +12,23 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 SOURCE="$SCRIPT_DIR/README.md"
 BUILD_DIR="$SCRIPT_DIR/dist"
 NAME="Robert_Townsend_Resume"
+CANONICAL_TITLE="ROBERT TOWNSEND (WILLIAMS)"
 
 echo "📄 Building resume from README.md..."
 echo "   Output directory: $BUILD_DIR"
 
 mkdir -p "$BUILD_DIR"
+
+# ============================================================
+# Fonts & styles (Roboto for HTML/PDF/DOCX)
+# ============================================================
+echo "🔤 Preparing Roboto fonts..."
+chmod +x "$SCRIPT_DIR/scripts/fetch-roboto-fonts.sh"
+"$SCRIPT_DIR/scripts/fetch-roboto-fonts.sh"
+python3 "$SCRIPT_DIR/scripts/prepare-reference-docx.py"
+mkdir -p "$BUILD_DIR/fonts"
+cp "$SCRIPT_DIR/assets/fonts/"Roboto-*.ttf "$BUILD_DIR/fonts/"
+cp "$SCRIPT_DIR/assets/resume.css" "$BUILD_DIR/resume.css"
 
 # ============================================================
 # JSON Resume — sync work section from README into source resume.json
@@ -25,15 +37,16 @@ echo "🔄 Syncing resume.json (work) from README.md..."
 python3 "$SCRIPT_DIR/sync-resume-from-readme.py" "$SOURCE" "$SCRIPT_DIR/resume.json"
 
 # ============================================================
-# DOCX — Microsoft Word
+# DOCX — Microsoft Word (no pandoc title/author block; Roboto reference + embed)
 # ============================================================
 echo "📝 Generating DOCX..."
 pandoc "$SOURCE" \
   -o "$BUILD_DIR/$NAME.docx" \
   --from markdown \
   --to docx \
-  --metadata title="Robert Townsend — Resume" \
-  --metadata author="Robert Townsend"
+  --reference-doc="$SCRIPT_DIR/assets/reference.docx"
+python3 "$SCRIPT_DIR/scripts/embed-docx-fonts.py" "$BUILD_DIR/$NAME.docx"
+python3 "$SCRIPT_DIR/scripts/patch-docx-roboto.py" "$BUILD_DIR/$NAME.docx"
 echo "   ✅ $NAME.docx"
 
 # ============================================================
@@ -59,7 +72,7 @@ else
 fi
 
 # ============================================================
-# HTML — Standalone with embedded CSS
+# HTML — standalone, single h1 (no title-block-header)
 # ============================================================
 echo "🌐 Generating HTML..."
 pandoc "$SOURCE" \
@@ -67,36 +80,11 @@ pandoc "$SOURCE" \
   --from markdown \
   --to html5 \
   --standalone \
-  --metadata title="Robert Townsend — Resume" \
-  --css="" \
-  --variable "header-includes=<style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      max-width: 850px;
-      margin: 40px auto;
-      padding: 0 20px;
-      color: #1a1a1a;
-      line-height: 1.6;
-      font-size: 14px;
-    }
-    h1 { font-size: 28px; margin-bottom: 4px; color: #0a0a0a; }
-    h2 { font-size: 18px; color: #232f3e; border-bottom: 1px solid #999; padding-bottom: 4px; margin-top: 28px; }
-    h3 { font-size: 15px; color: #37475a; margin-top: 20px; margin-bottom: 4px; }
-    strong { color: #0a0a0a; }
-    hr { border: none; border-top: 1px solid #ddd; margin: 24px 0; }
-    ul { padding-left: 20px; }
-    li { margin-bottom: 6px; }
-    p { margin: 6px 0; }
-    a { color: #0073bb; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    @media print {
-      body { margin: 0; padding: 0; font-size: 11px; max-width: 100%; }
-      h1 { font-size: 22px; }
-      h2 { font-size: 14px; }
-      h3 { font-size: 12px; }
-      hr { margin: 12px 0; }
-    }
-  </style>"
+  --variable title-meta=false \
+  --css=resume.css
+python3 "$SCRIPT_DIR/scripts/strip-html-title-block.py" \
+  "$BUILD_DIR/index.html" \
+  "$CANONICAL_TITLE"
 echo "   ✅ index.html"
 
 # ============================================================
@@ -107,10 +95,10 @@ echo "📑 Generating PDF..."
 if [ -f "$SCRIPT_DIR/.venv/bin/weasyprint" ]; then
   "$SCRIPT_DIR/.venv/bin/weasyprint" \
     "$BUILD_DIR/index.html" \
-    "$BUILD_DIR/$NAME.pdf" 2>/dev/null
+    "$BUILD_DIR/$NAME.pdf"
   echo "   ✅ $NAME.pdf (via weasyprint)"
 elif command -v weasyprint &>/dev/null; then
-  weasyprint "$BUILD_DIR/index.html" "$BUILD_DIR/$NAME.pdf" 2>/dev/null
+  weasyprint "$BUILD_DIR/index.html" "$BUILD_DIR/$NAME.pdf"
   echo "   ✅ $NAME.pdf (via weasyprint)"
 elif command -v pdflatex &>/dev/null || command -v xelatex &>/dev/null; then
   pandoc "$SOURCE" \
@@ -119,7 +107,8 @@ elif command -v pdflatex &>/dev/null || command -v xelatex &>/dev/null; then
     --pdf-engine=xelatex \
     -V geometry:margin=1in \
     -V fontsize=11pt \
-    --metadata title="Robert Townsend — Resume"
+    -V mainfont="Roboto" \
+    --variable title-meta=false
   echo "   ✅ $NAME.pdf (via LaTeX)"
 else
   echo "   ⚠️  PDF skipped — install weasyprint: python3 -m venv .venv && .venv/bin/pip install weasyprint"
