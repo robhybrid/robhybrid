@@ -38,6 +38,13 @@ jobs:
           path: dist
           if-no-files-found: error
 
+      # Auto-enable GitHub Pages (Source: GitHub Actions) so the deploy job does not
+      # 404 with "Ensure GitHub Pages has been enabled".
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
