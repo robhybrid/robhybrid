@@ -5,8 +5,12 @@ from __future__ import annotations
 import re
 import shutil
 import subprocess
+import sys
 import zipfile
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from docx_utils import repack_opc  # noqa: E402
 
 
 def main() -> None:
@@ -36,28 +40,10 @@ def main() -> None:
         text = re.sub(r"Calibri Light", "Roboto", text)
         path.write_text(text, encoding="utf-8")
 
-    fonts_dir = work / "word" / "fonts"
-    fonts_dir.mkdir(exist_ok=True)
-    for name in ("Roboto-Regular.ttf", "Roboto-Bold.ttf"):
-        shutil.copy2(font_dir / name, fonts_dir / name)
-
-    ct = work / "[Content_Types].xml"
-    if ct.is_file():
-        body = ct.read_text(encoding="utf-8")
-        for name in ("Roboto-Regular.ttf", "Roboto-Bold.ttf"):
-            part = f'/word/fonts/{name}'
-            if part not in body:
-                body = body.replace(
-                    "</Types>",
-                    f'  <Override PartName="{part}" '
-                    'ContentType="application/vnd.openxmlformats-officedocument.obfuscatedFont"/>\n</Types>',
-                )
-        ct.write_text(body, encoding="utf-8")
-
-    if out.exists():
-        out.unlink()
-    shutil.make_archive(str(out.with_suffix("")), "zip", work)
-    out.with_suffix(".zip").rename(out)
+    # Font embedding (obfuscation + relationships + embed references) is applied to the
+    # final document by scripts/embed-docx-fonts.py. The reference doc only needs the
+    # Roboto font *name* wired into the styles, so it must not carry orphan font parts.
+    repack_opc(work, out)
     shutil.rmtree(work)
     print(f"   ✅ {out}")
 

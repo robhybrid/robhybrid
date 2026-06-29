@@ -8,6 +8,9 @@ import sys
 import zipfile
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from docx_utils import normalize_element_order, repack_opc  # noqa: E402
+
 
 def patch_xml(text: str) -> str:
     # Theme-based fonts -> explicit Roboto
@@ -48,14 +51,14 @@ def main() -> None:
         p = work / rel
         if p.is_file():
             p.write_text(patch_xml(p.read_text(encoding="utf-8")), encoding="utf-8")
-    tmp = docx.with_suffix(".tmp.zip")
-    if tmp.exists():
-        tmp.unlink()
-    shutil.make_archive(str(tmp.with_suffix("")), "zip", work)
-    tmp.with_suffix(".zip").rename(docx)
+    # Bring pandoc's element ordering / values into schema compliance so the document
+    # passes strict OOXML validation (and opens in Apple Pages).
+    for rel in ("word/document.xml", "word/styles.xml", "word/settings.xml", "word/numbering.xml"):
+        p = work / rel
+        if p.is_file():
+            normalize_element_order(p)
+    repack_opc(work, docx)
     shutil.rmtree(work)
-    if tmp.exists():
-        tmp.unlink()
     print(f"   ✅ Patched Roboto fonts in {docx}")
 
 
