@@ -6,6 +6,7 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 import unittest
 import zipfile
 from pathlib import Path
@@ -15,6 +16,12 @@ DIST = ROOT / "dist"
 DOCX = DIST / "Robert_Townsend_Resume.docx"
 PDF = DIST / "Robert_Townsend_Resume.pdf"
 HTML = DIST / "index.html"
+
+sys.path.insert(0, str(ROOT / "scripts"))
+from docx_utils import obfuscate_font  # noqa: E402
+
+W = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
+OBFUSCATED_CT = "application/vnd.openxmlformats-officedocument.obfuscatedFont"
 
 CANONICAL = "ROBERT TOWNSEND (WILLIAMS)"
 REDUNDANT_TITLE = "Robert Townsend — Resume"
@@ -123,14 +130,77 @@ class ResumeOutputTests(unittest.TestCase):
         fonts = _pdffonts().lower()
         self.assertIn("roboto", fonts)
 
-    def test_docx_uses_roboto(self) -> None:
+    def test_docx_default_font_is_roboto(self) -> None:
         with zipfile.ZipFile(DOCX) as z:
-            doc = z.read("word/document.xml").decode("utf-8")
+            styles = z.read("word/styles.xml").decode("utf-8")
+        # Roboto must be wired in as the document default font (docDefaults), which is
+        # how the build sets Roboto everywhere without per-run rFonts.
+        defaults = re.search(r"<w:docDefaults>.*?</w:docDefaults>", styles, re.S)
+        self.assertIsNotNone(defaults, "styles.xml should contain docDefaults")
+        self.assertIn('w:ascii="Roboto"', defaults.group(0))
+
+    def test_docx_is_valid_opc_package(self) -> None:
+        """Strict OPC importers (Apple Pages, LinkedIn) require a clean package."""
+        with zipfile.ZipFile(DOCX) as z:
             names = z.namelist()
-        self.assertTrue(
-            "Roboto" in doc or any(n.startswith("word/fonts/Roboto") for n in names),
-            "DOCX should reference Roboto in document.xml or embed font files",
+        self.assertEqual(
+            names[0], "[Content_Types].xml", "[Content_Types].xml must be the first entry"
         )
+        dir_entries = [n for n in names if n.endswith("/")]
+        self.assertEqual(dir_entries, [], "package must not contain directory entries")
+
+    def test_docx_embeds_obfuscated_roboto(self) -> None:
+        """Embedded fonts must be obfuscated, declared, related and referenced."""
+        with zipfile.ZipFile(DOCX) as z:
+            names = z.namelist()
+            content_types = z.read("[Content_Types].xml").decode("utf-8")
+            font_table = z.read("word/fontTable.xml").decode("utf-8")
+            rels = z.read("word/_rels/fontTable.xml.rels").decode("utf-8")
+            settings = z.read("word/settings.xml").decode("utf-8")
+            obf_parts = {
+                n: z.read(n) for n in names if n.startswith("word/fonts/") and n.endswith(".odttf")
+            }
+
+        self.assertTrue(obf_parts, "expected obfuscated .odttf font parts")
+        self.assertIn('Extension="odttf"', content_types)
+        self.assertIn(OBFUSCATED_CT, content_types)
+        self.assertIn("<w:embedRegular", font_table)
+        self.assertIn("<w:embedBold", font_table)
+        self.assertIn("embedTrueTypeFonts", settings)
+
+        # Every embed reference must resolve to a relationship and an existing part,
+        # and the part must de-obfuscate to a real TrueType font (sfnt 0x00010000).
+        embeds = re.findall(
+            r'<w:embed\w+ r:id="([^"]+)" w:fontKey="(\{[0-9A-Fa-f-]+\})"', font_table
+        )
+        self.assertGreaterEqual(len(embeds), 2)
+        for rid, font_key in embeds:
+            target = re.search(rf'Id="{rid}"[^>]*Target="([^"]+)"', rels)
+            self.assertIsNotNone(target, f"relationship {rid} missing")
+            part = "word/" + target.group(1)
+            self.assertIn(part, obf_parts, f"font part {part} missing")
+            deobfuscated = obfuscate_font(obf_parts[part], font_key)
+            self.assertEqual(
+                deobfuscated[:4], b"\x00\x01\x00\x00",
+                "de-obfuscated font is not a valid TrueType file",
+            )
+
+    def test_docx_opens_in_libreoffice(self) -> None:
+        """LibreOffice is a free, scriptable proxy for strict importers like Pages."""
+        soffice = shutil.which("soffice") or shutil.which("libreoffice")
+        if not soffice:
+            raise unittest.SkipTest("LibreOffice not installed (apt install libreoffice-writer)")
+        with tempfile.TemporaryDirectory() as tmp:
+            proc = subprocess.run(
+                [soffice, "--headless", "--convert-to", "pdf", "--outdir", tmp, str(DOCX)],
+                capture_output=True,
+                text=True,
+                timeout=180,
+            )
+            self.assertEqual(proc.returncode, 0, proc.stderr)
+            self.assertTrue(
+                list(Path(tmp).glob("*.pdf")), "LibreOffice produced no PDF (DOCX rejected)"
+            )
 
 
 if __name__ == "__main__":
