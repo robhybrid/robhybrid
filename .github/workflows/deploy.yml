@@ -29,7 +29,7 @@ jobs:
           .venv/bin/pip install weasyprint
 
       - name: Build resume
-        run: chmod +x build-resume.sh scripts/*.sh && ./build-resume.sh
+        run: chmod +x build-resume.sh && ./build-resume.sh
 
       - name: Upload dist as downloadable artifact
         uses: actions/upload-artifact@v4
