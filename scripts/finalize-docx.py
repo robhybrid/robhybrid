@@ -35,7 +35,10 @@ def _paragraph_text(p: ET.Element) -> str:
 def _ensure_ppr_flag(p: ET.Element, flag: str) -> None:
     ppr = p.find(_w("pPr"))
     if ppr is None:
-        ppr = ET.SubElement(p, _w("pPr"))
+        # pPr must be the first child of w:p and appear exactly once. Create it
+        # detached and insert at index 0 — using ET.SubElement here would also
+        # append it at the end, producing a duplicate (invalid) pPr.
+        ppr = ET.Element(_w("pPr"))
         p.insert(0, ppr)
     if ppr.find(_w(flag)) is None:
         ET.SubElement(ppr, _w(flag))
