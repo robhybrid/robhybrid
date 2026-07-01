@@ -123,8 +123,14 @@ class ResumeOutputTests(unittest.TestCase):
         self.assertIn("widows: 2", css)
 
     def test_pdf_uses_arial(self) -> None:
+        # On systems without the proprietary Arial (Linux CI, this VM), fontconfig
+        # substitutes a metric-compatible drop-in — Arimo or Liberation Sans — for
+        # the `font-family: Arial` declaration. Any of these renders identically.
         fonts = _pdffonts().lower()
-        self.assertIn("arial", fonts)
+        self.assertTrue(
+            any(name in fonts for name in ("arial", "arimo", "liberation")),
+            f"expected an Arial-compatible font in the PDF, got:\n{fonts}",
+        )
 
     def test_docx_uses_arial(self) -> None:
         with zipfile.ZipFile(DOCX) as z:
