@@ -1,6 +1,6 @@
 # Robert Townsend
 
-> Full-stack developer → AI agent architect. 15+ years. Two-time Amazonian. AWS SA Pro. Stanford ML.
+> Forward Deployed Engineer for AI solutions. 15+ years full-stack, shipping production AI (agents, RAG, MCP) into live customer environments. Two-time Amazonian. AWS SA Pro. Stanford ML.
 
 ## Identity
 Name: Robert Townsend (Williams)
@@ -12,7 +12,7 @@ LinkedIn: linkedin.com/in/robert-townsend-b4313911
 Web: robhybrid.com
 
 ## What I Do
-I build AI agent systems and production web applications. My path from design (BFA) to multi-agent orchestration gives me unusual range — I've shipped HIPAA telehealth to hospitals, energy simulations to traders, and UI components to millions of AWS customers. I write code that writes code.
+I'm a Forward Deployed Engineer: I embed with customers to design, build, and ship production AI solutions end to end — LLM agents, RAG systems, and MCP integrations. My path from design (BFA) to multi-agent orchestration gives me unusual range — I've deployed HIPAA telehealth to hospitals, energy tools to traders, and UI components to millions of AWS customers. I write code that writes code.
 
 ## Key Numbers
 - 60% reduction in task completion time via multi-agent AI orchestration
@@ -54,7 +54,7 @@ Testing: Vitest, Jest, Playwright, Puppeteer, Selenium
 - Sounds Seen VJ Championship: 1st Place Final
 
 ## Seeking
-Senior/Staff SWE, Full-Stack (React + Python/Node + AWS), AI/ML Engineer, Solutions Architect
+Forward Deployed Engineer (AI Solutions), AI/ML Engineer, Senior/Staff SWE Full-Stack (React + Python/Node + AWS), Solutions Architect
 Open to: full-time, contract, remote
 
 ## Structured Data

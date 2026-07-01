@@ -1,8 +1,13 @@
 # ROBERT TOWNSEND (WILLIAMS)
 
+**Forward Deployed Engineer — AI Solutions**
+
 📞 512-565-3884  
 ✉️ [rob@robhybrid.com](mailto:rob@robhybrid.com)  
-📍 Austin, TX 78757     
+📍 Austin, TX 78757  
+🔗 [robhybrid.com](https://www.robhybrid.com) · [LinkedIn](https://www.linkedin.com/in/robert-townsend-b4313911) · [GitHub](https://github.com/robhybrid)     
+
+Forward Deployed Engineer who embeds with customers to design, build, and ship production AI solutions end to end — LLM agents, RAG systems, and MCP integrations on AWS. 15+ years across the full stack, with a track record of deploying software into live customer environments — nationwide HIPAA telehealth, real-time trading-desk tooling, and AWS products used by millions — and turning ambiguous business problems into working systems. Fluent from customer-facing discovery and stakeholder alignment down to agent orchestration, cloud infrastructure, and application code.
 
 ---
 

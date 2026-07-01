@@ -2,12 +2,12 @@
     "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
     "basics": {
         "name": "Robert Townsend",
-        "label": "Full-Stack Developer → AI Agent Architect",
+        "label": "Forward Deployed Engineer — AI Solutions",
         "image": "",
         "email": "rob@robhybrid.com",
         "phone": "512-565-3884",
         "url": "http://www.robhybrid.com",
-        "summary": "Full-stack developer with 15+ years building production web applications across healthcare, energy, fintech, and cloud infrastructure. Currently focused on AI agent orchestration and multi-agent systems at AWS. I started as a designer — that path from visual communication to multi-agent orchestration taught me that the best software is built at the intersection of human experience and technical depth.",
+        "summary": "Forward Deployed Engineer who embeds with customers to design, build, and ship production AI solutions end to end — LLM agents, RAG systems, and MCP integrations. 15+ years across the full stack, deploying software into live customer environments from nationwide HIPAA telehealth to AWS products used by millions. I turn ambiguous business problems into working systems, and I'm equally at home aligning stakeholders and going deep on agent orchestration, cloud infrastructure, and application code.",
         "location": {
             "city": "Austin",
             "region": "TX",
@@ -280,7 +280,7 @@
     "meta": {
         "canonical": "https://github.com/robhybrid/robhybrid",
         "version": "v2.0.0",
-        "lastModified": "2026-06-04",
+        "lastModified": "2026-07-01",
         "theme": "elegant"
     }
 }
