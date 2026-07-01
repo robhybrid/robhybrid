@@ -147,8 +147,7 @@ Robert_Townsend_Resume.docx
 __pycache__/
 *.pyc
 
-# Resume fonts & generated reference docx (fetched/built by build-resume.sh)
-assets/fonts/*.ttf
+# Generated reference docx (built by build-resume.sh)
 assets/reference.docx
 assets/_ref_work/
 

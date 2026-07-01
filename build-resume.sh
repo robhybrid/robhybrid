@@ -1,6 +1,6 @@
 #!/bin/bash
 # Build resume in multiple formats from README.md
-# Requires: pandoc, python3, curl
+# Requires: pandoc, python3
 # Optional: weasyprint for PDF (python3 -m venv .venv && .venv/bin/pip install weasyprint)
 #
 # Step 1 runs sync-resume-from-readme.py: refreshes work[] in resume.json from README, then
@@ -20,14 +20,10 @@ echo "   Output directory: $BUILD_DIR"
 mkdir -p "$BUILD_DIR"
 
 # ============================================================
-# Fonts & styles (Roboto for HTML/PDF/DOCX)
+# Styles & reference DOCX (Arial — system font, no embedding)
 # ============================================================
-echo "🔤 Preparing Roboto fonts..."
-chmod +x "$SCRIPT_DIR/scripts/fetch-roboto-fonts.sh"
-"$SCRIPT_DIR/scripts/fetch-roboto-fonts.sh"
+echo "🔤 Preparing Arial reference DOCX..."
 python3 "$SCRIPT_DIR/scripts/prepare-reference-docx.py"
-mkdir -p "$BUILD_DIR/fonts"
-cp "$SCRIPT_DIR/assets/fonts/"Roboto-*.ttf "$BUILD_DIR/fonts/"
 cp "$SCRIPT_DIR/assets/resume.css" "$BUILD_DIR/resume.css"
 
 # ============================================================
@@ -37,7 +33,7 @@ echo "🔄 Syncing resume.json (work) from README.md..."
 python3 "$SCRIPT_DIR/sync-resume-from-readme.py" "$SOURCE" "$SCRIPT_DIR/resume.json"
 
 # ============================================================
-# DOCX — Microsoft Word (no pandoc title/author block; Roboto reference + embed)
+# DOCX — Microsoft Word (Arial reference, valid OPC, widow/orphan controls)
 # ============================================================
 echo "📝 Generating DOCX..."
 pandoc "$SOURCE" \
@@ -45,8 +41,7 @@ pandoc "$SOURCE" \
   --from markdown \
   --to docx \
   --reference-doc="$SCRIPT_DIR/assets/reference.docx"
-python3 "$SCRIPT_DIR/scripts/embed-docx-fonts.py" "$BUILD_DIR/$NAME.docx"
-python3 "$SCRIPT_DIR/scripts/patch-docx-roboto.py" "$BUILD_DIR/$NAME.docx"
+python3 "$SCRIPT_DIR/scripts/finalize-docx.py" "$BUILD_DIR/$NAME.docx"
 echo "   ✅ $NAME.docx"
 
 # ============================================================
@@ -107,7 +102,7 @@ elif command -v pdflatex &>/dev/null || command -v xelatex &>/dev/null; then
     --pdf-engine=xelatex \
     -V geometry:margin=1in \
     -V fontsize=11pt \
-    -V mainfont="Roboto" \
+    -V mainfont="Arial" \
     --variable title-meta=false
   echo "   ✅ $NAME.pdf (via LaTeX)"
 else

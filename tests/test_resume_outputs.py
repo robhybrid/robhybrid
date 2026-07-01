@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regression tests for resume build outputs (headers, fonts)."""
+"""Regression tests for resume build outputs (headers, fonts, typography)."""
 from __future__ import annotations
 
 import re
@@ -16,12 +16,6 @@ DIST = ROOT / "dist"
 DOCX = DIST / "Robert_Townsend_Resume.docx"
 PDF = DIST / "Robert_Townsend_Resume.pdf"
 HTML = DIST / "index.html"
-
-sys.path.insert(0, str(ROOT / "scripts"))
-from docx_utils import obfuscate_font  # noqa: E402
-
-W = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
-OBFUSCATED_CT = "application/vnd.openxmlformats-officedocument.obfuscatedFont"
 
 CANONICAL = "ROBERT TOWNSEND (WILLIAMS)"
 REDUNDANT_TITLE = "Robert Townsend — Resume"
@@ -117,27 +111,33 @@ class ResumeOutputTests(unittest.TestCase):
         self.assertNotIn('id="title-block-header"', html)
         self.assertNotIn(REDUNDANT_TITLE, html)
         self.assertIn(CANONICAL, html)
-        self.assertEqual(html.count(f"<h1"), 1)
+        self.assertEqual(html.count("<h1"), 1)
 
-    def test_html_uses_roboto_stylesheet(self) -> None:
+    def test_html_uses_arial_stylesheet(self) -> None:
         html = HTML.read_text(encoding="utf-8")
         self.assertIn("resume.css", html)
         css = (DIST / "resume.css").read_text(encoding="utf-8")
-        self.assertIn('font-family: "Roboto"', css)
-        self.assertTrue((DIST / "fonts" / "Roboto-Regular.ttf").is_file())
+        self.assertIn("Arial", css)
+        self.assertIn("letter-spacing: 0.01em", css)
+        self.assertIn("orphans: 2", css)
+        self.assertIn("widows: 2", css)
 
-    def test_pdf_embeds_roboto(self) -> None:
+    def test_pdf_uses_arial(self) -> None:
         fonts = _pdffonts().lower()
-        self.assertIn("roboto", fonts)
+        self.assertIn("arial", fonts)
 
-    def test_docx_default_font_is_roboto(self) -> None:
+    def test_docx_uses_arial(self) -> None:
         with zipfile.ZipFile(DOCX) as z:
             styles = z.read("word/styles.xml").decode("utf-8")
-        # Roboto must be wired in as the document default font (docDefaults), which is
-        # how the build sets Roboto everywhere without per-run rFonts.
         defaults = re.search(r"<w:docDefaults>.*?</w:docDefaults>", styles, re.S)
         self.assertIsNotNone(defaults, "styles.xml should contain docDefaults")
-        self.assertIn('w:ascii="Roboto"', defaults.group(0))
+        self.assertIn('w:ascii="Arial"', defaults.group(0))
+
+    def test_docx_widow_orphan_controls(self) -> None:
+        xml = _docx_xml()
+        self.assertIn("<w:widowControl", xml)
+        self.assertIn('<w:pStyle w:val="Heading3"', xml)
+        self.assertIn("<w:keepNext", xml)
 
     def test_docx_is_valid_opc_package(self) -> None:
         """Strict OPC importers (Apple Pages, LinkedIn) require a clean package."""
@@ -149,41 +149,12 @@ class ResumeOutputTests(unittest.TestCase):
         dir_entries = [n for n in names if n.endswith("/")]
         self.assertEqual(dir_entries, [], "package must not contain directory entries")
 
-    def test_docx_embeds_obfuscated_roboto(self) -> None:
-        """Embedded fonts must be obfuscated, declared, related and referenced."""
+    def test_docx_no_embedded_font_parts(self) -> None:
+        """Arial is a system font — no orphan embedded font parts."""
         with zipfile.ZipFile(DOCX) as z:
             names = z.namelist()
-            content_types = z.read("[Content_Types].xml").decode("utf-8")
-            font_table = z.read("word/fontTable.xml").decode("utf-8")
-            rels = z.read("word/_rels/fontTable.xml.rels").decode("utf-8")
-            settings = z.read("word/settings.xml").decode("utf-8")
-            obf_parts = {
-                n: z.read(n) for n in names if n.startswith("word/fonts/") and n.endswith(".odttf")
-            }
-
-        self.assertTrue(obf_parts, "expected obfuscated .odttf font parts")
-        self.assertIn('Extension="odttf"', content_types)
-        self.assertIn(OBFUSCATED_CT, content_types)
-        self.assertIn("<w:embedRegular", font_table)
-        self.assertIn("<w:embedBold", font_table)
-        self.assertIn("embedTrueTypeFonts", settings)
-
-        # Every embed reference must resolve to a relationship and an existing part,
-        # and the part must de-obfuscate to a real TrueType font (sfnt 0x00010000).
-        embeds = re.findall(
-            r'<w:embed\w+ r:id="([^"]+)" w:fontKey="(\{[0-9A-Fa-f-]+\})"', font_table
-        )
-        self.assertGreaterEqual(len(embeds), 2)
-        for rid, font_key in embeds:
-            target = re.search(rf'Id="{rid}"[^>]*Target="([^"]+)"', rels)
-            self.assertIsNotNone(target, f"relationship {rid} missing")
-            part = "word/" + target.group(1)
-            self.assertIn(part, obf_parts, f"font part {part} missing")
-            deobfuscated = obfuscate_font(obf_parts[part], font_key)
-            self.assertEqual(
-                deobfuscated[:4], b"\x00\x01\x00\x00",
-                "de-obfuscated font is not a valid TrueType file",
-            )
+        font_parts = [n for n in names if n.startswith("word/fonts/")]
+        self.assertEqual(font_parts, [])
 
     def test_docx_opens_in_libreoffice(self) -> None:
         """LibreOffice is a free, scriptable proxy for strict importers like Pages."""

@@ -9,9 +9,9 @@ truth; `build-resume.sh` (run via `npm run build`) renders it into
 static site.
 
 ### Build / test / run
-- Build: `npm run build` (alias for `./build-resume.sh`). Downloads Roboto
-  fonts, syncs `resume.json` work section from `README.md`, then emits all
-  formats into `dist/`.
+- Build: `npm run build` (alias for `./build-resume.sh`). Builds an Arial-based
+  `assets/reference.docx`, syncs `resume.json` work section from `README.md`, then
+  emits all formats into `dist/`.
 - Test: `npm test` (`python3 tests/test_resume_outputs.py`). Tests assert on the
   contents of `dist/`, so **run `npm run build` first** or they skip/fail.
 - Run/preview: serve the output, e.g. `python3 -m http.server 8080` from
@@ -26,16 +26,10 @@ static site.
 - **`npm run build` rewrites tracked `resume.json`** (refreshes `work[]` and
   `lastModified`). This shows up as a git diff after every build — revert it
   (`git checkout -- resume.json`) unless the change is intended.
-- **Roboto font embedding depends on system fontconfig, not just the bundled
-  TTFs.** WeasyPrint embeds whatever font fontconfig resolves for the
-  `font-family: "Roboto"` declared in `assets/resume.css`. The base VM image
-  shipped `/etc/fonts/local.conf` with a strong alias mapping `Roboto -> Noto
-  Sans`, which made the PDF embed Noto Sans and broke `test_pdf_embeds_roboto`.
-  Fix applied during setup (persists in the VM snapshot): real Roboto installed
-  into `/usr/local/share/fonts/roboto/` and the `Roboto -> Noto Sans` block
-  removed from `/etc/fonts/local.conf`, then `sudo fc-cache -f`. If that test
-  regresses (e.g. fresh snapshot), re-check `fc-match "Roboto"` — it must report
-  Roboto, not Noto Sans.
+- **DOCX uses Arial as a system font (not embedded).** `scripts/finalize-docx.py`
+  repacks via `docx_utils.repack_opc` and adds widow/orphan paragraph controls.
+  No font download or embedding step — Arial must exist on the build host for PDF
+  (WeasyPrint uses system fontconfig).
 - **`bedrock-playground` does not exist** in the repo (only a `.kiro/specs`
   design doc). The `build:playground`, `infra:plan`, and `infra:apply` scripts
   in `package.json` are aspirational and will fail — ignore them.
