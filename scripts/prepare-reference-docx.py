@@ -96,12 +96,18 @@ def main() -> None:
     if styles.is_file():
         _patch_styles(styles)
 
-    for rel in ("word/fontTable.xml", "word/settings.xml"):
+    # theme1.xml must be patched too: docDefaults/styles reference the theme fonts
+    # (asciiTheme="minorHAnsi" etc.), and the theme font wins over an explicit
+    # w:ascii="Arial". pandoc's default theme uses Calibri Light (major) and Cambria
+    # (minor, a serif), so without this the DOCX renders in a serif/sans fallback
+    # instead of Arial.
+    for rel in ("word/fontTable.xml", "word/settings.xml", "word/theme/theme1.xml"):
         path = work / rel
         if path.is_file():
             text = path.read_text(encoding="utf-8")
             text = re.sub(r"Calibri Light", "Arial", text)
             text = re.sub(r"Calibri", "Arial", text)
+            text = re.sub(r"Cambria", "Arial", text)
             path.write_text(text, encoding="utf-8")
 
     repack_opc(work, out)
