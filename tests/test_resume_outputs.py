@@ -162,6 +162,23 @@ class ResumeOutputTests(unittest.TestCase):
         font_parts = [n for n in names if n.startswith("word/fonts/")]
         self.assertEqual(font_parts, [])
 
+    def test_docx_uses_real_word_bullet_lists(self) -> None:
+        """Lists must be OOXML numbering with real bullets, not space/facsimile markers."""
+        xml = _docx_xml()
+        self.assertIn("<w:numPr>", xml)
+        self.assertGreater(xml.count("<w:numPr>"), 20)
+        with zipfile.ZipFile(DOCX) as z:
+            numbering = z.read("word/numbering.xml").decode("utf-8")
+        # No blank/space-only bullet markers
+        self.assertNotRegex(
+            numbering,
+            r'<w:numFmt w:val="bullet"[^/]*/>\s*<w:lvlText w:val="\s*"',
+        )
+        self.assertIn('w:ascii="Symbol"', numbering)
+        # Tighter than pandoc's default 720 twips left indent on level 0
+        self.assertIn('w:left="360"', numbering)
+        self.assertIn('w:hanging="180"', numbering)
+
     def test_docx_opens_in_libreoffice(self) -> None:
         """LibreOffice is a free, scriptable proxy for strict importers like Pages."""
         soffice = shutil.which("soffice") or shutil.which("libreoffice")

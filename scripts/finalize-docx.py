@@ -13,6 +13,12 @@ from docx_utils import normalize_element_order, repack_opc  # noqa: E402
 
 W = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
 
+# Pandoc defaults to 720/360 twips (0.5"/0.25"). Tighten for denser resumes.
+LIST_INDENT_STEP = 360  # 0.25"
+LIST_HANGING = 180  # 0.125"
+# Word Symbol font bullet (same glyph pandoc uses for real lists).
+BULLET_GLYPH = "\uf0b7"
+
 
 def _w(tag: str) -> str:
     return f"{{{W}}}{tag}"
@@ -66,6 +72,48 @@ def _patch_document(document_path: Path) -> None:
     normalize_element_order(document_path)
 
 
+def _patch_numbering(numbering_path: Path) -> None:
+    """Use real Word bullet glyphs and tighter list indents (not space/facsimile markers)."""
+    ET.register_namespace("w", W)
+    tree = ET.parse(numbering_path)
+    root = tree.getroot()
+
+    for lvl in root.iter(_w("lvl")):
+        ilvl = int(lvl.get(_w("ilvl") or "0") or "0")
+        num_fmt = lvl.find(_w("numFmt"))
+        if num_fmt is None or num_fmt.get(_w("val")) != "bullet":
+            continue
+
+        lvl_text = lvl.find(_w("lvlText"))
+        if lvl_text is None:
+            lvl_text = ET.SubElement(lvl, _w("lvlText"))
+        # Pandoc sometimes emits a space as the "bullet" — replace with a real glyph.
+        if (lvl_text.get(_w("val")) or "").strip() == "":
+            lvl_text.set(_w("val"), BULLET_GLYPH)
+
+        rpr = lvl.find(_w("rPr"))
+        if rpr is None:
+            rpr = ET.SubElement(lvl, _w("rPr"))
+        fonts = rpr.find(_w("rFonts"))
+        if fonts is None:
+            fonts = ET.SubElement(rpr, _w("rFonts"))
+        for attr in ("ascii", "hAnsi", "cs"):
+            fonts.set(_w(attr), "Symbol")
+        fonts.set(_w("hint"), "default")
+
+        ppr = lvl.find(_w("pPr"))
+        if ppr is None:
+            ppr = ET.SubElement(lvl, _w("pPr"))
+        ind = ppr.find(_w("ind"))
+        if ind is None:
+            ind = ET.SubElement(ppr, _w("ind"))
+        ind.set(_w("left"), str(LIST_INDENT_STEP * (ilvl + 1)))
+        ind.set(_w("hanging"), str(LIST_HANGING))
+
+    tree.write(str(numbering_path), xml_declaration=True, encoding="UTF-8")
+    normalize_element_order(numbering_path)
+
+
 def finalize(docx: Path) -> None:
     work = docx.with_suffix(".finalize_work")
     if work.exists():
@@ -79,6 +127,8 @@ def finalize(docx: Path) -> None:
         if p.is_file():
             if rel == "word/document.xml":
                 _patch_document(p)
+            elif rel == "word/numbering.xml":
+                _patch_numbering(p)
             else:
                 normalize_element_order(p)
 

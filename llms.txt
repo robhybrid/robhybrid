@@ -6,7 +6,7 @@
 Name: Robert Townsend (Williams)
 Email: rob@robhybrid.com
 Phone: 512-565-3884
-Location: Austin, TX 78723
+Location: Austin, TX 78757
 GitHub: github.com/robhybrid
 LinkedIn: linkedin.com/in/robert-townsend-b4313911
 Web: robhybrid.com
@@ -35,15 +35,15 @@ Testing: Vitest, Jest, Playwright, Puppeteer, Selenium
 ## Career (most recent first)
 1. AWS — Web Developer, Marketplace UX (Oct 2025 – Mar 2026)
 2. TotalEnergies — Full-Stack Developer (Apr 2024 – Jun 2025)
-3. Airstrip Technologies — Lead Web App Developer (Jun 2017 – Jan 2024)
-4. Amazon — SDE, Mobile Device Management (Jun 2016 – May 2017)
-5. Mutual Mobile — Senior Web Developer (Oct 2012 – May 2016)
+3. Airstrip Technologies — Lead Web App Developer (May 2017 – Jan 2024)
+4. Amazon — SDE, Mobile Device Management (Jul 2016 – Jan 2017)
+5. Mutual Mobile — Senior Web Developer (Oct 2012 – Jun 2016)
 6–11. Projekt202, Simply Interactive, Perficient, BazaarVoice, Heatwave Interactive, Charity Dynamics (2008–2012)
 
 ## Credentials
-- AWS Solutions Architect – Professional
-- AWS Developer – Associate
-- Stanford Machine Learning Specialization (2023)
+- 2017 AWS Certified Solutions Architect – Professional
+- 2017 AWS Certified Developer – Associate
+- 2023 Stanford University – Machine Learning Specialization
 - BFA Communication Design, Texas State (2008)
 - Node.js Open Source Contributor
 

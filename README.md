@@ -27,36 +27,41 @@ Forward Deployed Engineer who embeds with customers to design, build, and ship p
 
 **Full-Stack Developer** | Apr 2024 – Jun 2025
 
-- Built a React/FastAPI application modeling grid-scale energy storage — processed simulations across 10+ year horizons with an AWS Lambda backend
-- Migrated the entire backend from Flask to FastAPI, accelerating API response times and enabling async processing for long-running simulations
-- Engineered CI/CD pipelines in GitHub Actions with automated unit, integration, and visual regression tests — caught UI regressions before production
+- Designed and built FastAPI REST APIs (users, customers, sites, proposals, rates/interconnect) powering React energy-storage simulations across 10+ year horizons
+- Migrated the backend from Flask to FastAPI, unlocking async processing for long-running simulations and improving API responsiveness
+- Drove ALB auth redesign so unauthenticated API calls fail closed (401) while browsers still reach login — replacing brittle per-route auth decorators
+- Extended GitHub Actions with unit, integration, and Playwright tests; added session-sticky Elastic Beanstalk build-swap for non-prod (disabled in prod)
 - Eliminated 100% of known security vulnerabilities across the full application stack
 - Conducted stakeholder interviews and delivered a UX redesign informed by direct user testing with energy traders
+- Introduced FastAPI to resistant backend leads via demo, OpenAPI docs, and contract tests — the team adopted the design
 
 ### Airstrip Technologies — San Antonio, TX
 
 **Lead Web App Developer** | May 2017 – Jan 2024
 
+- Reverse-engineered undocumented mobile endpoints from traffic logs, documented the API, and steered later endpoints toward REST
+- Built a clustered Node/Express telehealth video service with WebSockets, Redis, PM2, and Twilio — resilient restarts and autoscaling
+- Designed services, networking, auth, and EC2/ALB topology for DoD VPN delivery — owned through handoff; DoD took production
 - Architected HIPAA-compliant telehealth platforms with live remote patient monitoring, deployed across hospital systems nationwide
-- Built a real-time WebGL telemetry dashboard rendering live patient vitals for hospital staff — handled continuous data streams with sub-second latency
-- Modernized infrastructure: containerized microservices, automated CI/CD pipelines, and hardened deployment security
-- Directed cross-functional teams spanning product, engineering, QA, and design through multiple major platform releases
+- Built a real-time WebGL dashboard streaming live patient vitals to hospital staff with sub-second latency
+- Modernized delivery with Jenkins CI/CD, containerized services, and hardened deploy security; advocated automated browser testing
+- Led cross-functional releases spanning product, engineering, QA, and design across major platform launches
 
 ### Amazon — Austin, TX
 
 **Software Development Engineer (Mobile Device Management)** | Jul 2016 – Jan 2017
 
 - Built internal tools managing software deployment across Amazon's global mobile device fleet (thousands of devices)
-- Created D3/React data dashboards tracking provisioning performance in real time
-- Designed secure REST APIs integrating with Java backend services
+- Designed REST API contracts for Java backend integration and shipped a mock server to unblock front-end development
+- Created D3/React dashboards tracking provisioning performance in real time
 
 ### Mutual Mobile — Austin, TX
 
 **Senior Web Developer** | Oct 2012 – Jun 2016
 
-- Spearheaded LeanUX methodology for cross-platform financial education tools — won Gold Davey Award and multiple W3 Awards
+- Built client products in Angular (~2 years) and React; pioneered LeanUX living style guides for award-winning financial education tools (Gold Davey; multiple W3 Awards)
+- Introduced GitFlow and always-available CD with S3 builds addressable by commit, build, or branch
 - Built a browser-based Google Glass simulator before official hardware release, demonstrating rapid prototyping capability
-- Championed user testing, iteration, and analytics-driven development across mobile and web platforms
 
 ### Projekt202 — Austin, TX
 
@@ -74,7 +79,7 @@ Forward Deployed Engineer who embeds with customers to design, build, and ship p
 
 **Lead Developer** | Jan 2011 – Mar 2012
 
-- Directed full-stack development for education and corporate clients; established Agile workflows and version control processes
+- Directed full-stack development for education and corporate clients; introduced version control to the team (coached adoption through a “DON’T PANIC” walkthrough) and established Agile workflows
 
 ### BazaarVoice — Austin, TX
 
@@ -86,7 +91,7 @@ Forward Deployed Engineer who embeds with customers to design, build, and ship p
 
 **Developer** | Nov 2009 – Oct 2010
 
-- Developed front/back-end features for social gaming platforms with SQL analytics dashboards
+- Built front/back-end features for social gaming; developed XML→SQL ETL into warehouse-style event tables
 
 ### Charity Dynamics Inc. — Austin, TX
 
@@ -132,9 +137,9 @@ Docker, Git, Prometheus, Grafana, CI/CD, Webpack, Vite
 
 ## Certifications
 
-- AWS Certified Solutions Architect – Professional
-- AWS Certified Developer – Associate
-- Stanford University – Machine Learning Specialization (Dec 2022 – Feb 2023, Coursera)
+- 2017 AWS Certified Solutions Architect – Professional
+- 2017 AWS Certified Developer – Associate
+- 2023 Stanford University – Machine Learning Specialization
 
 ---
 
