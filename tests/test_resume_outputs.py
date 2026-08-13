@@ -132,6 +132,22 @@ class ResumeOutputTests(unittest.TestCase):
             f"expected an Arial-compatible font in the PDF, got:\n{fonts}",
         )
 
+    def test_pdf_strips_contact_emoji_icons(self) -> None:
+        """Color-emoji contact icons stretch/duplicate under WeasyPrint — omit from PDF."""
+        text = _pdf_text()
+        for ch in ("📞", "📍", "🔗", "✉", "📧"):
+            self.assertNotIn(ch, text, f"PDF still contains contact emoji {ch!r}")
+        # Contact details themselves must remain.
+        self.assertIn("512-565-3884", text)
+        self.assertIn("rob@robhybrid.com", text)
+        self.assertIn("Austin, TX", text)
+        # Web HTML may still use the icons.
+        html = HTML.read_text(encoding="utf-8")
+        self.assertTrue(
+            any(ch in html for ch in ("📞", "📍", "🔗", "✉")),
+            "expected contact emoji to remain in index.html for the web build",
+        )
+
     def test_docx_uses_arial(self) -> None:
         with zipfile.ZipFile(DOCX) as z:
             styles = z.read("word/styles.xml").decode("utf-8")

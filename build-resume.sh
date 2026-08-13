@@ -87,13 +87,19 @@ echo "   ✅ index.html"
 # ============================================================
 echo "📑 Generating PDF..."
 
+# WeasyPrint mishandles color-emoji glyphs (tall stretched overlays). Feed it a
+# sanitized copy of the HTML so the public index.html can keep the icons.
+PDF_HTML="$BUILD_DIR/index.pdf.html"
+cp "$BUILD_DIR/index.html" "$PDF_HTML"
+python3 "$SCRIPT_DIR/scripts/sanitize_html_for_pdf.py" "$PDF_HTML"
+
 if [ -f "$SCRIPT_DIR/.venv/bin/weasyprint" ]; then
   "$SCRIPT_DIR/.venv/bin/weasyprint" \
-    "$BUILD_DIR/index.html" \
+    "$PDF_HTML" \
     "$BUILD_DIR/$NAME.pdf"
   echo "   ✅ $NAME.pdf (via weasyprint)"
 elif command -v weasyprint &>/dev/null; then
-  weasyprint "$BUILD_DIR/index.html" "$BUILD_DIR/$NAME.pdf"
+  weasyprint "$PDF_HTML" "$BUILD_DIR/$NAME.pdf"
   echo "   ✅ $NAME.pdf (via weasyprint)"
 elif command -v pdflatex &>/dev/null || command -v xelatex &>/dev/null; then
   pandoc "$SOURCE" \
@@ -108,6 +114,7 @@ elif command -v pdflatex &>/dev/null || command -v xelatex &>/dev/null; then
 else
   echo "   ⚠️  PDF skipped — install weasyprint: python3 -m venv .venv && .venv/bin/pip install weasyprint"
 fi
+rm -f "$PDF_HTML"
 
 # ============================================================
 # Summary
