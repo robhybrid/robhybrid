@@ -35,13 +35,17 @@ def _parse_monyyyy(s: str) -> tuple[int, int]:
     return _month_num(parts[0]), int(parts[1])
 
 
-def _iso_range(daterange: str) -> tuple[str, str]:
+def _iso_range(daterange: str) -> tuple[str, str | None]:
+    """Return (startDate, endDate). endDate is None for ongoing roles ('Present')."""
     s = daterange.strip()
     segs = re.split(r"\s*[–—]\s*", s, maxsplit=1)
     if len(segs) != 2:
         raise ValueError(f"Unrecognized date range: {s!r}")
     sm, sy = _parse_monyyyy(segs[0])
-    em, ey = _parse_monyyyy(segs[1])
+    end_tok = segs[1].strip()
+    if end_tok.lower() == "present":
+        return f"{sy:04d}-{sm:02d}-01", None
+    em, ey = _parse_monyyyy(end_tok)
     last = calendar.monthrange(ey, em)[1]
     return f"{sy:04d}-{sm:02d}-01", f"{ey:04d}-{em:02d}-{last:02d}"
 
@@ -104,15 +108,15 @@ def _parse_jobs(work_md: str) -> list[dict[str, Any]]:
                 highlights.append(u.group(1).strip())
         if not highlights:
             raise SystemExit(f"No bullet highlights found for: {name!r}")
-        jobs.append(
-            {
-                "name": name,
-                "position": position,
-                "startDate": start_d,
-                "endDate": end_d,
-                "highlights": highlights,
-            }
-        )
+        job: dict[str, Any] = {
+            "name": name,
+            "position": position,
+            "startDate": start_d,
+            "highlights": highlights,
+        }
+        if end_d is not None:
+            job["endDate"] = end_d
+        jobs.append(job)
     return jobs
 
 
