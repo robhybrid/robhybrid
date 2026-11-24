@@ -123,14 +123,21 @@ class ResumeOutputTests(unittest.TestCase):
         self.assertIn("widows: 2", css)
 
     def test_pdf_uses_arial(self) -> None:
-        # On systems without the proprietary Arial (Linux CI, this VM), fontconfig
-        # substitutes a metric-compatible drop-in — Arimo or Liberation Sans — for
-        # the `font-family: Arial` declaration. Any of these renders identically.
+        # Prefer real Microsoft Arial (msttcorefonts + assets/fontconfig-arial.conf).
+        # Without Arial installed, fontconfig may still substitute Arimo/Liberation.
         fonts = _pdffonts().lower()
-        self.assertTrue(
-            any(name in fonts for name in ("arial", "arimo", "liberation")),
-            f"expected an Arial-compatible font in the PDF, got:\n{fonts}",
-        )
+        arial_ttf = Path("/usr/share/fonts/truetype/msttcorefonts/Arial.ttf")
+        if arial_ttf.is_file():
+            self.assertIn(
+                "arial",
+                fonts,
+                f"Microsoft Arial is installed; PDF should embed Arial, got:\n{fonts}",
+            )
+        else:
+            self.assertTrue(
+                any(name in fonts for name in ("arial", "arimo", "liberation")),
+                f"expected an Arial-compatible font in the PDF, got:\n{fonts}",
+            )
 
     def test_pdf_strips_contact_emoji_icons(self) -> None:
         """Color-emoji contact icons stretch/duplicate under WeasyPrint — omit from PDF."""
