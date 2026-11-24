@@ -158,9 +158,32 @@ class ResumeOutputTests(unittest.TestCase):
     def test_docx_uses_arial(self) -> None:
         with zipfile.ZipFile(DOCX) as z:
             styles = z.read("word/styles.xml").decode("utf-8")
+            document = z.read("word/document.xml").decode("utf-8")
         defaults = re.search(r"<w:docDefaults>.*?</w:docDefaults>", styles, re.S)
         self.assertIsNotNone(defaults, "styles.xml should contain docDefaults")
         self.assertIn('w:ascii="Arial"', defaults.group(0))
+        # Theme font refs make iPhone Word/Pages fall back to a serif — forbid them
+        # on docDefaults once we stamp explicit Arial.
+        self.assertNotIn("asciiTheme", defaults.group(0))
+        self.assertNotIn("hAnsiTheme", defaults.group(0))
+        # Body runs must carry explicit Arial (not theme-only).
+        run_fonts = re.findall(r"<w:rFonts[^/]*/>", document)
+        self.assertGreater(len(run_fonts), 0, "expected run-level rFonts in document.xml")
+        arial_runs = [rf for rf in run_fonts if 'w:ascii="Arial"' in rf]
+        self.assertGreaterEqual(
+            len(arial_runs),
+            len(run_fonts) - 5,  # allow a few Symbol/other exceptions
+            f"most runs should be Arial; got {len(arial_runs)}/{len(run_fonts)}",
+        )
+        # Headings must not rely solely on majorHAnsi theme.
+        for sid in ("Heading1", "Heading2", "Heading3", "Normal", "BodyText"):
+            m = re.search(
+                rf'<w:style[^>]*w:styleId="{sid}"[^>]*>.*?</w:style>',
+                styles,
+                re.S,
+            )
+            self.assertIsNotNone(m, f"missing style {sid}")
+            self.assertIn('w:ascii="Arial"', m.group(0), f"{sid} should set Arial explicitly")
 
     def test_docx_widow_orphan_controls(self) -> None:
         xml = _docx_xml()
