@@ -11,6 +11,15 @@ Forward Deployed Engineer who embeds with customers to design, build, and ship p
 
 ---
 
+### AbbVie — Remote
+
+**AI Developer** | Aug 2026 – Present
+
+- Building a production security architecture review platform that uses Claude (via corporate Anthropic proxy on AWS) to unblock IT projects stuck in security review before production
+- Designed and shipped agents, a RAG pipeline, and deep AI↔data integration over PostgreSQL vectors — chat and auto-drafted reviewer replies on architecture submissions
+- Owned end-to-end delivery on a ~7-person team: user research and UX through FastAPI/React–TypeScript APIs and UI, Redis, S3/CloudFront; CloudTrail-backed audit trail for reviews; used by architects, ITSOs, and administrators
+- Hardened delivery with Snyk, Playwright, and Vitest
+
 ### Amazon Web Services — Austin, TX
 
 **Web Developer, AWS Marketplace UX** | Oct 2025 – Mar 2026
@@ -125,7 +134,7 @@ HTML5, CSS3, SASS, LESS, Tailwind, Material UI, Bootstrap, Ant Design, WebGL, OA
 PostgreSQL, MongoDB, MySQL, DynamoDB    
 
 **Other Tools:**  
-Docker, Git, Prometheus, Grafana, CI/CD, Webpack, Vite    
+Docker, Git, Redis, Snyk, Anthropic API, CloudTrail, Prometheus, Grafana, CI/CD, Webpack, Vite    
 
 ---
 

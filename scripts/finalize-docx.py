@@ -50,6 +50,26 @@ def _ensure_ppr_flag(p: ET.Element, flag: str) -> None:
         ET.SubElement(ppr, _w(flag))
 
 
+def _force_run_arial(r: ET.Element) -> None:
+    """Explicit Arial on every text run — iPhone Word/Pages ignore theme fonts."""
+    rpr = r.find(_w("rPr"))
+    if rpr is None:
+        rpr = ET.Element(_w("rPr"))
+        r.insert(0, rpr)
+    fonts = rpr.find(_w("rFonts"))
+    if fonts is None:
+        fonts = ET.SubElement(rpr, _w("rFonts"))
+    # Leave Symbol bullet glyphs alone (set in numbering.xml, rarely on runs).
+    if (fonts.get(_w("ascii")) or "") == "Symbol":
+        return
+    for attr in ("asciiTheme", "hAnsiTheme", "eastAsiaTheme", "cstheme"):
+        key = _w(attr)
+        if key in fonts.attrib:
+            del fonts.attrib[key]
+    for attr in ("ascii", "hAnsi", "eastAsia", "cs"):
+        fonts.set(_w(attr), "Arial")
+
+
 def _patch_document(document_path: Path) -> None:
     ET.register_namespace("w", W)
     tree = ET.parse(document_path)
@@ -67,6 +87,8 @@ def _patch_document(document_path: Path) -> None:
         # Job date line (e.g. "**Title** | Apr 2024 – Jun 2025") — keep with bullets below.
         if style == "FirstParagraph" and "|" in _paragraph_text(p) and "–" in _paragraph_text(p):
             _ensure_ppr_flag(p, "keepNext")
+        for r in p.findall(_w("r")):
+            _force_run_arial(r)
 
     tree.write(str(document_path), xml_declaration=True, encoding="UTF-8")
     normalize_element_order(document_path)

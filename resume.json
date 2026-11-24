@@ -29,10 +29,20 @@
     },
     "work": [
         {
+            "name": "AbbVie",
+            "position": "AI Developer",
+            "startDate": "2026-08-01",
+            "highlights": [
+                "Building a production security architecture review platform that uses Claude (via corporate Anthropic proxy on AWS) to unblock IT projects stuck in security review before production",
+                "Designed and shipped agents, a RAG pipeline, and deep AI↔data integration over PostgreSQL vectors — chat and auto-drafted reviewer replies on architecture submissions",
+                "Owned end-to-end delivery on a ~7-person team: user research and UX through FastAPI/React–TypeScript APIs and UI, Redis, S3/CloudFront; CloudTrail-backed audit trail for reviews; used by architects, ITSOs, and administrators",
+                "Hardened delivery with Snyk, Playwright, and Vitest"
+            ]
+        },
+        {
             "name": "Amazon Web Services",
             "position": "Web Developer, AWS Marketplace UX",
             "startDate": "2025-10-01",
-            "endDate": "2026-03-31",
             "highlights": [
                 "Architected a multi-agent AI orchestration framework coordinating 4+ specialized agents in parallel — reduced complex development task completion time by 60% through tmux-based delegation with timeout management and status monitoring",
                 "Built 2 production MCP (Model Context Protocol) servers: macOS UI automation (Python/PyObjC, 15+ tools) and tmux task delegation (Node.js, 8+ tools), extending AI agent capabilities beyond standard IDE tooling",
@@ -42,6 +52,7 @@
                 "Automated the code review lifecycle with custom AI agents for comment resolution, build diagnostics, and CR maintenance — cut manual review overhead by an estimated 50%",
                 "Shipped frontend UI components to millions of AWS customers using React, TypeScript, and Cloudscape design system"
             ],
+            "endDate": "2026-03-31",
             "url": "https://aws.amazon.com",
             "summary": "AI agent orchestration and frontend delivery for AWS Marketplace"
         },
@@ -49,7 +60,6 @@
             "name": "TotalEnergies",
             "position": "Full-Stack Developer",
             "startDate": "2024-04-01",
-            "endDate": "2025-06-30",
             "highlights": [
                 "Designed and built FastAPI REST APIs (users, customers, sites, proposals, rates/interconnect) powering React energy-storage simulations across 10+ year horizons",
                 "Migrated the backend from Flask to FastAPI, unlocking async processing for long-running simulations and improving API responsiveness",
@@ -59,13 +69,13 @@
                 "Conducted stakeholder interviews and delivered a UX redesign informed by direct user testing with energy traders",
                 "Introduced FastAPI to resistant backend leads via demo, OpenAPI docs, and contract tests — the team adopted the design"
             ],
+            "endDate": "2025-06-30",
             "summary": "Energy storage modeling platform with React/FastAPI/AWS"
         },
         {
             "name": "Airstrip Technologies",
             "position": "Lead Web App Developer",
             "startDate": "2017-05-01",
-            "endDate": "2024-01-31",
             "highlights": [
                 "Reverse-engineered undocumented mobile endpoints from traffic logs, documented the API, and steered later endpoints toward REST",
                 "Built a clustered Node/Express telehealth video service with WebSockets, Redis, PM2, and Twilio — resilient restarts and autoscaling",
@@ -75,84 +85,85 @@
                 "Modernized delivery with Jenkins CI/CD, containerized services, and hardened deploy security; advocated automated browser testing",
                 "Led cross-functional releases spanning product, engineering, QA, and design across major platform launches"
             ],
+            "endDate": "2024-01-31",
             "summary": "HIPAA-compliant telehealth platforms with real-time patient monitoring"
         },
         {
             "name": "Amazon",
             "position": "Software Development Engineer (Mobile Device Management)",
             "startDate": "2016-07-01",
-            "endDate": "2017-01-31",
             "highlights": [
                 "Built internal tools managing software deployment across Amazon's global mobile device fleet (thousands of devices)",
                 "Designed REST API contracts for Java backend integration and shipped a mock server to unblock front-end development",
                 "Created D3/React dashboards tracking provisioning performance in real time"
             ],
+            "endDate": "2017-01-31",
             "url": "https://www.amazon.com"
         },
         {
             "name": "Mutual Mobile",
             "position": "Senior Web Developer",
             "startDate": "2012-10-01",
-            "endDate": "2016-06-30",
             "highlights": [
                 "Built client products in Angular (~2 years) and React; pioneered LeanUX living style guides for award-winning financial education tools (Gold Davey; multiple W3 Awards)",
                 "Introduced GitFlow and always-available CD with S3 builds addressable by commit, build, or branch",
                 "Built a browser-based Google Glass simulator before official hardware release, demonstrating rapid prototyping capability"
-            ]
+            ],
+            "endDate": "2016-06-30"
         },
         {
             "name": "Projekt202",
             "position": "User Interface Developer",
             "startDate": "2011-10-01",
-            "endDate": "2012-02-29",
             "highlights": [
                 "Built international mobile-first web solutions with Backbone.js, Bootstrap, and REST APIs"
-            ]
+            ],
+            "endDate": "2012-02-29"
         },
         {
             "name": "Perficient",
             "position": "User Interface Developer",
             "startDate": "2011-03-01",
-            "endDate": "2011-10-31",
             "highlights": [
                 "Created responsive UI components and reusable JS/CSS libraries for enterprise websites"
-            ]
+            ],
+            "endDate": "2011-10-31"
         },
         {
             "name": "Simply Interactive",
             "position": "Lead Developer",
             "startDate": "2011-01-01",
-            "endDate": "2012-03-31",
             "highlights": [
                 "Directed full-stack development for education and corporate clients; introduced version control to the team (coached adoption through a “DON’T PANIC” walkthrough) and established Agile workflows"
-            ]
+            ],
+            "endDate": "2012-03-31"
         },
         {
             "name": "BazaarVoice",
             "position": "Implementation Designer",
             "startDate": "2010-09-01",
-            "endDate": "2011-01-31",
             "highlights": [
                 "Built CSS implementations for Microsoft, JCPenney, and Gillette; created a PHP email templating tool saving hundreds of engineer hours"
-            ]
+            ],
+            "endDate": "2011-01-31"
         },
         {
             "name": "Heatwave Interactive",
             "position": "Developer",
             "startDate": "2009-11-01",
-            "endDate": "2010-10-31",
             "highlights": [
                 "Built front/back-end features for social gaming; developed XML→SQL ETL into warehouse-style event tables"
-            ]
+            ],
+            "endDate": "2010-10-31"
         },
         {
             "name": "Charity Dynamics Inc.",
             "position": "Interactive Designer",
             "startDate": "2008-08-01",
-            "endDate": "2009-10-31",
             "highlights": [
                 "Designed digital fundraising applications raising $1M+ for nonprofits"
-            ]
+            ],
+            "endDate": "2009-10-31"
         }
     ],
     "education": [
@@ -287,7 +298,7 @@
     "meta": {
         "canonical": "https://github.com/robhybrid/robhybrid",
         "version": "v2.0.0",
-        "lastModified": "2026-08-11",
+        "lastModified": "2026-11-24",
         "theme": "elegant"
     }
 }

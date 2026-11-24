@@ -93,6 +93,16 @@ PDF_HTML="$BUILD_DIR/index.pdf.html"
 cp "$BUILD_DIR/index.html" "$PDF_HTML"
 python3 "$SCRIPT_DIR/scripts/sanitize_html_for_pdf.py" "$PDF_HTML"
 
+# Prefer real Microsoft Arial for PDF when msttcorefonts is installed.
+# Some hosts (e.g. Cursor Cloud) strongly alias Arial→Arimo in fontconfig;
+# FONTCONFIG_FILE bypasses that so WeasyPrint embeds Arial.
+ARIAL_TTF="/usr/share/fonts/truetype/msttcorefonts/Arial.ttf"
+FC_ARIAL="$SCRIPT_DIR/assets/fontconfig-arial.conf"
+if [ -f "$ARIAL_TTF" ] && [ -f "$FC_ARIAL" ]; then
+  export FONTCONFIG_FILE="$FC_ARIAL"
+  echo "   🔤 Using Microsoft Arial for PDF ($ARIAL_TTF)"
+fi
+
 if [ -f "$SCRIPT_DIR/.venv/bin/weasyprint" ]; then
   "$SCRIPT_DIR/.venv/bin/weasyprint" \
     "$PDF_HTML" \

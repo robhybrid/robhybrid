@@ -20,8 +20,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install pandoc and poppler
-        run: sudo apt-get install -y pandoc poppler-utils
+      - name: Install pandoc, poppler, and Microsoft Arial
+        run: |
+          echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
+          sudo apt-get update
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y pandoc poppler-utils ttf-mscorefonts-installer
+          sudo fc-cache -f
 
       - name: Install weasyprint
         run: |

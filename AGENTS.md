@@ -28,8 +28,10 @@ static site.
   (`git checkout -- resume.json`) unless the change is intended.
 - **DOCX uses Arial as a system font (not embedded).** `scripts/finalize-docx.py`
   repacks via `docx_utils.repack_opc` and adds widow/orphan paragraph controls.
-  No font download or embedding step — Arial must exist on the build host for PDF
-  (WeasyPrint uses system fontconfig).
+- **PDF needs real Microsoft Arial on the build host.** Install
+  `ttf-mscorefonts-installer` (CI does this). `build-resume.sh` sets
+  `FONTCONFIG_FILE=assets/fontconfig-arial.conf` so WeasyPrint embeds Arial
+  instead of Cursor/Cloud’s Arial→Arimo fontconfig alias.
 - **`bedrock-playground` does not exist** in the repo (only a `.kiro/specs`
   design doc). The `build:playground`, `infra:plan`, and `infra:apply` scripts
   in `package.json` are aspirational and will fail — ignore them.

@@ -23,6 +23,28 @@ def _w(tag: str) -> str:
     return f"{{{W}}}{tag}"
 
 
+# Theme-linked font attrs: on iPhone Word/Pages, asciiTheme often resolves to a
+# serif (or fails) even when w:ascii="Arial" is also set. Prefer explicit Arial.
+_THEME_FONT_ATTRS = (
+    "asciiTheme",
+    "hAnsiTheme",
+    "eastAsiaTheme",
+    "cstheme",
+)
+
+
+def _force_arial_rfonts(rf: ET.Element, *, keep_mono: bool = False) -> None:
+    """Stamp explicit Arial and drop theme font references."""
+    if keep_mono:
+        return
+    for attr in _THEME_FONT_ATTRS:
+        key = _w(attr)
+        if key in rf.attrib:
+            del rf.attrib[key]
+    for attr in ("ascii", "hAnsi", "eastAsia", "cs"):
+        rf.set(_w(attr), "Arial")
+
+
 def _patch_styles(styles_path: Path) -> None:
     text = styles_path.read_text(encoding="utf-8")
     text = re.sub(r"Calibri Light", "Arial", text)
@@ -44,8 +66,7 @@ def _patch_styles(styles_path: Path) -> None:
         rf = rpr.find(_w("rFonts"))
         if rf is None:
             rf = ET.SubElement(rpr, _w("rFonts"))
-        rf.set(_w("ascii"), "Arial")
-        rf.set(_w("hAnsi"), "Arial")
+        _force_arial_rfonts(rf)
         spacing = rpr.find(_w("spacing"))
         if spacing is None:
             spacing = ET.SubElement(rpr, _w("spacing"))
@@ -60,8 +81,21 @@ def _patch_styles(styles_path: Path) -> None:
         if ppr.find(_w("widowControl")) is None:
             ET.SubElement(ppr, _w("widowControl"))
 
+    body_style_ids = {"Normal", "BodyText", "FirstParagraph", "Compact", "Title"}
     for style in root.findall(_w("style")):
-        style_id = style.get(_w("styleId"))
+        style_id = style.get(_w("styleId")) or ""
+        rpr = style.find(_w("rPr"))
+        if rpr is None and style_id in body_style_ids:
+            rpr = ET.SubElement(style, _w("rPr"))
+        if rpr is not None:
+            rf = rpr.find(_w("rFonts"))
+            if rf is None:
+                rf = ET.SubElement(rpr, _w("rFonts"))
+            keep_mono = style_id in {"VerbatimChar", "SourceCode"} or (
+                (rf.get(_w("ascii")) or "") in {"Consolas", "Courier New", "Courier"}
+            )
+            _force_arial_rfonts(rf, keep_mono=keep_mono)
+
         if style_id not in ("Heading3", "FirstParagraph"):
             continue
         ppr = style.find(_w("pPr"))

@@ -123,14 +123,21 @@ class ResumeOutputTests(unittest.TestCase):
         self.assertIn("widows: 2", css)
 
     def test_pdf_uses_arial(self) -> None:
-        # On systems without the proprietary Arial (Linux CI, this VM), fontconfig
-        # substitutes a metric-compatible drop-in — Arimo or Liberation Sans — for
-        # the `font-family: Arial` declaration. Any of these renders identically.
+        # Prefer real Microsoft Arial (msttcorefonts + assets/fontconfig-arial.conf).
+        # Without Arial installed, fontconfig may still substitute Arimo/Liberation.
         fonts = _pdffonts().lower()
-        self.assertTrue(
-            any(name in fonts for name in ("arial", "arimo", "liberation")),
-            f"expected an Arial-compatible font in the PDF, got:\n{fonts}",
-        )
+        arial_ttf = Path("/usr/share/fonts/truetype/msttcorefonts/Arial.ttf")
+        if arial_ttf.is_file():
+            self.assertIn(
+                "arial",
+                fonts,
+                f"Microsoft Arial is installed; PDF should embed Arial, got:\n{fonts}",
+            )
+        else:
+            self.assertTrue(
+                any(name in fonts for name in ("arial", "arimo", "liberation")),
+                f"expected an Arial-compatible font in the PDF, got:\n{fonts}",
+            )
 
     def test_pdf_strips_contact_emoji_icons(self) -> None:
         """Color-emoji contact icons stretch/duplicate under WeasyPrint — omit from PDF."""
@@ -151,9 +158,32 @@ class ResumeOutputTests(unittest.TestCase):
     def test_docx_uses_arial(self) -> None:
         with zipfile.ZipFile(DOCX) as z:
             styles = z.read("word/styles.xml").decode("utf-8")
+            document = z.read("word/document.xml").decode("utf-8")
         defaults = re.search(r"<w:docDefaults>.*?</w:docDefaults>", styles, re.S)
         self.assertIsNotNone(defaults, "styles.xml should contain docDefaults")
         self.assertIn('w:ascii="Arial"', defaults.group(0))
+        # Theme font refs make iPhone Word/Pages fall back to a serif — forbid them
+        # on docDefaults once we stamp explicit Arial.
+        self.assertNotIn("asciiTheme", defaults.group(0))
+        self.assertNotIn("hAnsiTheme", defaults.group(0))
+        # Body runs must carry explicit Arial (not theme-only).
+        run_fonts = re.findall(r"<w:rFonts[^/]*/>", document)
+        self.assertGreater(len(run_fonts), 0, "expected run-level rFonts in document.xml")
+        arial_runs = [rf for rf in run_fonts if 'w:ascii="Arial"' in rf]
+        self.assertGreaterEqual(
+            len(arial_runs),
+            len(run_fonts) - 5,  # allow a few Symbol/other exceptions
+            f"most runs should be Arial; got {len(arial_runs)}/{len(run_fonts)}",
+        )
+        # Headings must not rely solely on majorHAnsi theme.
+        for sid in ("Heading1", "Heading2", "Heading3", "Normal", "BodyText"):
+            m = re.search(
+                rf'<w:style[^>]*w:styleId="{sid}"[^>]*>.*?</w:style>',
+                styles,
+                re.S,
+            )
+            self.assertIsNotNone(m, f"missing style {sid}")
+            self.assertIn('w:ascii="Arial"', m.group(0), f"{sid} should set Arial explicitly")
 
     def test_docx_widow_orphan_controls(self) -> None:
         xml = _docx_xml()
